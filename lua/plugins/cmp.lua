@@ -38,7 +38,7 @@ return {
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end,
-		}
+		},
 	},
 	opts = function()
 		vim.api.nvim_set_hl(

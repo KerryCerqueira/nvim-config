@@ -1,8 +1,9 @@
 local M = {}
 
 local telescope = require("telescope.builtin")
+local set_keymaps = require("keymaps").set_keymaps
 
-M.common = {
+M.common_keymaps = {
 	{ "n", "gR",
 		"<cmd>Telescope lsp_references<CR>",
 		"Show LSP references"
@@ -58,4 +59,24 @@ M.common = {
 	},
 }
 
+M.set_floating_diagnostics = function()
+	vim.o.updatetime = 250
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		group = vim.api.nvim_create_augroup("float_diagnostic_cursor", { clear = true }),
+		callback = function ()
+			vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+		end
+	})
+end
+
+M.set_default_keymaps = function(bufnr)
+	set_keymaps(M.common_keymaps, bufnr)
+end
+
+M.default_on_attach = function(_, bufnr)
+	M.set_floating_diagnostics()
+	M.set_default_keymaps(bufnr)
+end
+
 return M
+

@@ -7,12 +7,7 @@ return {
 		opts = {
 			servers = {
 				lua_ls = {
-					on_attach = function(_, bufnr)
-						require("keymaps").set_keymaps(
-							require("keymaps.lsp").common,
-							bufnr
-						)
-					end,
+					on_attach = require("lsp").default_on_attach,
 					settings = {
 						Lua = {
 							workspace = {
