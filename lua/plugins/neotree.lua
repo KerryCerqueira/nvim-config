@@ -44,6 +44,7 @@ return { -- neotree
 				end
 				require('neo-tree.command').execute({
 					action = "focus",
+					toggle = true,
 					source = "filesystem",
 					position = "float",
 					reveal_file = reveal_file,
@@ -68,6 +69,7 @@ return { -- neotree
 				end
 				require('neo-tree.command').execute({
 					action = "focus",
+					toggle = true,
 					source = "filesystem",
 					position = "left",
 					reveal_file = reveal_file,
@@ -151,9 +153,9 @@ return { -- neotree
 				enabled = true,
 				required_width = 88, -- min width of window required to show this column
 			},
-			          modified = {
-            symbol = "[+]",
-            highlight = "NeoTreeModified",
+			modified = {
+				symbol = "[+]",
+				highlight = "NeoTreeModified",
 			},
 			name = {
 				trailing_slash = false,
