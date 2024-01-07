@@ -25,22 +25,22 @@ M.common_keymaps = {
 		"Show LSP type definitions"
 	},
 	{ { "n", "v" },
-		"<leader>ca",
+		"<Leader>ca",
 		vim.lsp.buf.code_action,
 		"See available code actions"
 	},
-	{ "n", "<leader>rn",
+	{ "n", "<Leader>rn",
 		vim.lsp.buf.rename,
 		"Smart rename"
 	},
-	{ "n", "<leader>D",
+	{ "n", "<Leader>fd",
 		function() telescope.diagnostics() end,
 		"Show buffer diagnostics"
 	},
-	{ "n", "<leader>d",
-		vim.diagnostic.open_float,
-		"Show line diagnostics"
-	},
+	-- { "n", "<Leader>d",
+	-- 	vim.diagnostic.open_float,
+	-- 	"Show line diagnostics"
+	-- },
 	{ "n", "[d",
 		vim.diagnostic.goto_prev,
 		"Go to previous diagnostic"
@@ -53,18 +53,28 @@ M.common_keymaps = {
 		vim.lsp.buf.hover,
 		"Show documentation at cursor"
 	},
-	{ "n", "<leader>rs",
+	{ "n", "<Leader>rs",
 		":LspRestart<CR>",
 		"Restart LSP"
 	},
 }
 
-M.set_floating_diagnostics = function()
+M.set_floating_diagnostics = function(bufnr)
 	vim.o.updatetime = 250
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		group = vim.api.nvim_create_augroup("float_diagnostic_cursor", { clear = true }),
-		callback = function ()
-			vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+	vim.api.nvim_create_autocmd("CursorHold", {
+		buffer = bufnr,
+		callback = function()
+			local opts = {
+				focusable = false,
+				close_events = {
+					"BufLeave", "CursorMoved", "InsertEnter", "FocusLost"
+				},
+				border = 'rounded',
+				source = 'always',
+				prefix = ' ',
+				scope = 'cursor',
+			}
+			vim.diagnostic.open_float(nil, opts)
 		end
 	})
 end
@@ -74,7 +84,7 @@ M.set_default_keymaps = function(bufnr)
 end
 
 M.default_on_attach = function(_, bufnr)
-	M.set_floating_diagnostics()
+	M.set_floating_diagnostics(bufnr)
 	M.set_default_keymaps(bufnr)
 end
 
