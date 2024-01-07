@@ -18,3 +18,5 @@ require("lazy").setup({
 vim.opt.shiftwidth = 3
 vim.opt.tabstop = 3
 vim.opt.signcolumn = "yes"
+vim.opt.number = true
+vim.opt.relativenumber = true
