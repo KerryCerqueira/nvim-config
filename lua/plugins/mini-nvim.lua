@@ -10,7 +10,7 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = {
 					"help", "alpha", "dashboard", "neo-tree", "Trouble", "trouble",
-					"lazy", "mason", "notify", "toggleterm", "lazyterm",
+					"lazy", "notify", "toggleterm", "lazyterm",
 				},
 				callback = function()
 					vim.b.miniindentscope_disable = true
@@ -29,11 +29,18 @@ return {
 		event = "BufEnter",
 		keys = {
 			{
-				"<leader>mm",
+				"<Leader>mm",
 				function()
 					require("mini.map").toggle()
 				end,
 				desc = "Toggle minimap",
+			},
+			{
+				"<Leader>mf",
+				function()
+					require("mini.map").toggle_focus()
+				end,
+				desc = "Toggle minimap focus"
 			},
 		},
 		init = function()
@@ -87,7 +94,7 @@ return {
 		version = false,
 		keys = {
 			{
-				"<leader>up",
+				"<Leader>up",
 				function()
 					local Util = require("lazy.core.util")
 					vim.g.minipairs_disable = not vim.g.minipairs_disable
