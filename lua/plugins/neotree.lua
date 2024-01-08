@@ -79,7 +79,7 @@ return { -- neotree
 			desc = "Toggle Neotree drawer (root dir)",
 		},
 		{ -- git status
-			"<leader>gs",
+			"<leader>fg",
 			function()
 				require('neo-tree.command').execute({
 					action = "focus",
@@ -98,7 +98,7 @@ return { -- neotree
 					position = "float",
 				})
 			end,
-			desc = "Git status",
+			desc = "Show diagnostics",
 		},
 		{ -- document symbols
 			"<leader>fs",
