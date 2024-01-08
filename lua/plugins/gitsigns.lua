@@ -103,18 +103,6 @@ return {
 					},
 					{
 						"n",
-						"<Leader>gd",
-						gs.diffthis,
-						"Diff against index",
-					},
-					{
-						"n",
-						"<Leader>gD",
-						function() gs.diffthis("~") end,
-						"Diff against last commit"
-					},
-					{
-						"n",
 						"<Leader>gtd",
 						gs.toggle_deleted,
 						"Toggle deleted"
