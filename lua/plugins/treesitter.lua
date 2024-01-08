@@ -13,6 +13,7 @@ return {
 				"markdown", "markdown_inline", "regex", "ssh_config", "toml", "tsv",
 				"vim", "vimdoc", "xml", "yaml",
 			},
+			auto_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
 			incremental_selection = {

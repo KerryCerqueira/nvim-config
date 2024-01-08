@@ -42,12 +42,6 @@ M.cmp_kinds = {
 	Variable      = "󰀫 ",
 }
 
-M.mason_status_icons = {
-	package_installed = "✓",
-	package_pending = "➜",
-	package_uninstalled = "✗"
-}
-
 M.lspconfig_diagnostic_icons = {
 	Error = " ",
 	Warn  = " ",

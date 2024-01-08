@@ -23,7 +23,7 @@ return {
 				indent_blankline = { enabled = true },
 				-- leap = true,
 				-- lsp_trouble = true,
-				mason = true,
+				-- mason = true,
 				-- markdown = true,
 				mini = true,
 				native_lsp = {

@@ -25,13 +25,6 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "taplo" })
-		end,
-	},
-	{
 		"simrat39/rust-tools.nvim",
 		event = { "BufRead *.rs" },
 		opts = {
@@ -140,11 +133,4 @@ return {
 	-- 		},
 	-- 	},
 	-- },
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "codelldb" })
-		end,
-	},
 }
