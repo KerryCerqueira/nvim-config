@@ -49,33 +49,30 @@ return {
 		local defaults = require("cmp.config.default")()
 		return {
 			completion = {
-				completeopt = "menu,menuone,noinsert",
+				completeopt = 'menu,menuone,noselect,noinsert',
 			},
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
+			preselect = cmp.PreselectMode.None,
 			mapping = cmp.mapping.preset.insert({
-				["<C-n>"] = cmp.mapping.select_next_item(
-					{ behavior = cmp.SelectBehavior.Insert }
+				["<Tab>"] = cmp.mapping.select_next_item(
+					{ behavior = cmp.SelectBehavior.Select }
 				),
-				["<C-p>"] = cmp.mapping.select_prev_item(
-					{ behavior = cmp.SelectBehavior.Insert }
+				["<S-Tab>"] = cmp.mapping.select_prev_item(
+					{ behavior = cmp.SelectBehavior.Select }
 				),
-				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-n>"] = cmp.mapping.scroll_docs(-4),
+				["<C-p>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<S-CR>"] = cmp.mapping.confirm({
+				["q"] = cmp.mapping.abort(),
+				["<Space>"] = cmp.mapping.confirm({select = false}),
+				["<S-Space>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
+					select = false,
 				}),
-				["<C-CR>"] = function(fallback)
-				cmp.abort()
-					fallback()
-				end,
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
