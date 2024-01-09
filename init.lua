@@ -1,4 +1,6 @@
 vim.g.mapleader = " "
+vim.cmd("cmap w!! w !sudo tee > /dev/null %")
+vim.api.nvim_create_user_command("Xs", "mks! | xa", { force = true })
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
