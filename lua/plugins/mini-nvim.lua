@@ -1,6 +1,7 @@
 return {
 	{ -- indentscope
 		"echasnovski/mini.indentscope",
+		event = "BufEnter",
 		version = false,
 		opts = {
 			symbol = "▏",
@@ -76,11 +77,13 @@ return {
 	},
 	{ -- mini.surround
 		'echasnovski/mini.surround',
+		event = "BufEnter",
 		opts = {},
 		version = false
 	},
 	{ -- mini.bracketed
 		'echasnovski/mini.bracketed',
+		event = "BufEnter",
 		opts = {},
 		version = false
 	},
@@ -91,6 +94,7 @@ return {
 	},
 	{ -- mini.pairs
 		'echasnovski/mini.pairs',
+		event = "BufEnter",
 		version = false,
 		keys = {
 			{
@@ -111,6 +115,7 @@ return {
 	},
 	{ -- mini.trailspace
 		'echasnovski/mini.trailspace',
+		event = "BufEnter",
 		opts = {},
 		version = false
 	},
