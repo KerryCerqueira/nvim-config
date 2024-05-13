@@ -60,6 +60,7 @@ M.common_keymaps = {
 }
 
 M.set_floating_diagnostics = function(bufnr)
+	vim.notify("Setting floating diagnostics")
 	vim.o.updatetime = 250
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
@@ -80,6 +81,7 @@ M.set_floating_diagnostics = function(bufnr)
 end
 
 M.set_default_keymaps = function(bufnr)
+	vim.notify("Setting default LSP keymaps")
 	set_keymaps(M.common_keymaps, bufnr)
 end
 
