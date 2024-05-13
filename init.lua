@@ -23,8 +23,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
 if vim.g.neovide then
-	vim.o.guifont = "MesloLGS NF:h11"
-	vim.g.neovide_transparency = 0.8
+	vim.g.neovide_scale_factor = 0.85
+	vim.g.neovide_transparency = 0.9
 	vim.g.neovide_floating_blur_amount_x = 0
 	vim.g.neovide_floating_blur_amount_y = 0
 	vim.g.neovide_floating_shadow = true
