@@ -11,22 +11,22 @@ return {
 	cmd = "Neogit",
 	keys = {
 		{
-			"<Leader>gd",
+			"<Leader>Gd",
 			"<cmd> DiffviewOpen<cr>",
 			desc = "Diff against index",
 		},
 		{
-			"<Leader>gD",
+			"<Leader>GD",
 			"<cmd> DiffviewOpen HEAD<cr>",
 			desc = "Diff against HEAD",
 		},
 		{
-			"<Leader>gh",
+			"<Leader>Gh",
 			"<cmd> DiffviewFileHistory<cr>",
 			desc = "View git file history",
 		},
 		{
-			"<Leader>gg",
+			"<Leader>Gg",
 			function() require("neogit").open({ cwd = "%:p:h" }) end,
 			desc = "Git status",
 		},

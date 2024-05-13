@@ -39,13 +39,13 @@ return {
 					},
 					{
 						"n",
-						"<Leader>gs",
+						"<Leader>Gs",
 						gs.stage_hunk,
 						"Stage hunk",
 					},
 					{
 						"v",
-						"<Leader>gs",
+						"<Leader>Gs",
 						function()
 							gs.stage_hunk({vim.fn.line("."), vim.fn.line("v")})
 						end,
@@ -53,13 +53,13 @@ return {
 					},
 					{
 						"n",
-						"<Leader>gr",
+						"<Leader>Gr",
 						gs.reset_hunk,
 						"Reset hunk",
 					},
 					{
 						"v",
-						"<Leader>gr",
+						"<Leader>Gr",
 						function()
 							gs.reset_hunk({vim.fn.line("."), vim.fn.line("v")})
 						end,
@@ -67,43 +67,43 @@ return {
 					},
 					{
 						"n",
-						"<Leader>gS",
+						"<Leader>GS",
 						gs.stage_buffer,
 						"Stage buffer",
 					},
 					{
 						"n",
-						"<Leader>gu",
+						"<Leader>Gu",
 						gs.undo_stage_hunk,
 						"Undo stage hunk",
 					},
 					{
 						"n",
-						"<Leader>gR",
+						"<Leader>GR",
 						gs.reset_buffer,
 						"Git reset buffer",
 					},
 					{
 						"n",
-						"<Leader>gp",
+						"<Leader>Gp",
 						gs.preview_hunk,
 						"Preview hunk",
 					},
 					{
 						"n",
-						"<Leader>gb",
+						"<Leader>Gb",
 						function() gs.blame_line({full=true}) end,
 						"Git blame line",
 					},
 					{
 						"n",
-						"<Leader>gtb",
+						"<Leader>Gtb",
 						gs.toggle_current_line_blame,
 						"Toggle virtual text git blame",
 					},
 					{
 						"n",
-						"<Leader>gtd",
+						"<Leader>Gtd",
 						gs.toggle_deleted,
 						"Toggle deleted"
 					},
@@ -123,7 +123,7 @@ return {
 		optional = true,
 		opts = {
 			defaults = {
-				["<Leader>g"] = "+git",
+				["<Leader>G"] = "+git",
 			},
 		},
 	},
