@@ -31,7 +31,6 @@ return {
 			server = {
 				on_attach = function(_, bufnr)
 					local rt = require("rust-tools")
-					require("lsp").default_on_attach(_, bufnr)
 					vim.keymap.set(
 						{ "n", "v" }, "K",
 						rt.hover_actions.hover_actions,

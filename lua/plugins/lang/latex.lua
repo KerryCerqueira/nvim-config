@@ -51,7 +51,11 @@ return {
 			servers = {
 				texlab = {
 					keys = {
-						{ "<Leader>K", "<plug>(vimtex-doc-package)", desc = "Vimtex Docs", silent = true },
+						{
+							"<Leader>K",
+							"<plug>(vimtex-doc-package)",
+							desc = "Vimtex Docs", silent = true
+						},
 					},
 				},
 			},

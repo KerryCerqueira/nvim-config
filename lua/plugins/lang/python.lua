@@ -37,7 +37,6 @@ return {
 		optional = true,
 		dependencies = {
 			"mfussenegger/nvim-dap-python",
-			-- stylua: ignore
 			keys = {
 				{ "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
 				{ "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
@@ -56,8 +55,8 @@ return {
 				"env",
 				".env",
 			},
-			anaconda_base_path = "/home/kerry/miniconda3",
-			anaconda_envs_path = "/home/kerry/miniconda3/envs"
+			anaconda_base_path = "/home/kerry/miniforge3",
+			anaconda_envs_path = "/home/kerry/miniforge3/envs"
 		},
 		keys = {
 			{
