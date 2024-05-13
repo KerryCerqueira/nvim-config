@@ -7,7 +7,6 @@ return {
 		opts = {
 			servers = {
 				lua_ls = {
-					on_attach = require("lsp").default_on_attach,
 					settings = {
 						Lua = {
 							workspace = {

@@ -88,7 +88,6 @@ return {
 			servers = {
 				taplo = {
 					on_attach = function()
-						require("lsp").default_on_attach()
 						vim.api.nvim_create_autocmd(
 							{"BufRead", "BufNewFile"},
 							{
