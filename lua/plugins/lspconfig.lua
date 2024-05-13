@@ -16,7 +16,16 @@ return {
 		},
 	},
 	config = function(_, opts)
-
+		vim.api.nvim_create_autocmd(
+			'LspAttach',
+			{
+				group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+				callback = function(ev)
+					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+					require("lsp").default_on_attach(ev.buf)
+				end,
+			}
+		)
 		for name, icon in pairs(require("icons").lspconfig_diagnostic_icons) do
 			name = "DiagnosticSign" .. name
 			vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
