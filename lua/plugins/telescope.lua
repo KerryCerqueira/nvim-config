@@ -93,7 +93,7 @@ return { -- telescope
 			desc = "Search registers"
 		},
 		{
-			'<leader>gc',
+			'<leader>Gc',
 			function()
 				require("telescope.builtin").git_commits()
 			end,
