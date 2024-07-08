@@ -1,9 +1,4 @@
 return {
-	{ -- pretty-fold
-		"anuvyklack/pretty-fold.nvim",
-		opts = {},
-		version = false,
-	},
 	{ -- fold-preview
 		"anuvyklack/fold-preview.nvim",
 		dependencies = {
