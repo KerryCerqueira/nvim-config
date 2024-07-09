@@ -12,6 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+local keymaps = require("keymaps")
+keymaps.set_keymaps(keymaps.user_keymaps)
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{import = "plugins"},
