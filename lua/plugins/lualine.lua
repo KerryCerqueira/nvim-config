@@ -12,7 +12,6 @@ return {
 		end
 	end,
 	opts = function()
-		-- PERF: we don't need this lualine require madness 🤷
 		local lualine_require = require("lualine_require")
 		lualine_require.require = require
 
@@ -41,7 +40,6 @@ return {
 						},
 					},
 					{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-					-- { Util.lualine.pretty_path() },
 				},
 				lualine_x = {
 					{
@@ -73,7 +71,31 @@ return {
 					end,
 				},
 			},
-			extensions = { "neo-tree", "lazy" },
+			extensions = { "neo-tree", "lazy", "quickfix", "trouble", "fzf" },
+			tabline = {
+				lualine_a = {{
+					'tabs',
+					mode = 2,
+					path = 1,
+					use_mode_colors = true,
+				}},
+				lualine_z = {{
+					"buffers",
+					mode = 2,
+				}},
+			},
+			winbar = {
+				lualine_a = {{
+					"filename",
+					path = 1,
+				}},
+			},
+			inactive_winbar = {
+				lualine_a = {{
+					"filename",
+					path = 1,
+				}},
+			}
 		}
 	end,
 }
