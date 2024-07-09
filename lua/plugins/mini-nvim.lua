@@ -22,7 +22,6 @@ return {
 	{ -- mini.map
 		'echasnovski/mini.map',
 		version = false,
-		},
 		event = "BufEnter",
 		keys = {
 			{
