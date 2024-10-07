@@ -2,14 +2,14 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
-		priority = 1000,
-		init = function() vim.cmd.colorscheme('tokyonight-night') end,
 		opts = {}
 	},
 	{
 		"catppuccin/nvim",
 		lazy = true,
 		name = "catppuccin",
+		priority = 1000,
+		init = function() vim.cmd.colorscheme("catppuccin-mocha") end,
 		opts = {
 			integrations = {
 				-- aerial = true,
@@ -24,7 +24,7 @@ return {
 				-- leap = true,
 				-- lsp_trouble = true,
 				-- mason = true,
-				-- markdown = true,
+				markdown = true,
 				mini = true,
 				native_lsp = {
 					enabled = true,
@@ -39,11 +39,11 @@ return {
 				-- neotest = true,
 				neotree = true,
 				-- noice = true,
-				-- notify = true,
+				notify = true,
 				-- semantic_tokens = true,
 				telescope = true,
 				treesitter = true,
-				-- treesitter_context = true,
+				treesitter_context = true,
 				which_key = true,
 			},
 		},
