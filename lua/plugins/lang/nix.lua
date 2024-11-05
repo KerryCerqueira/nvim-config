@@ -3,7 +3,14 @@ return {
 		"neovim/nvim-lspconfig",
 		opts = {
 			servers = {
-				nil_ls = {},
+				nixd = {
+					nixpkgs = {
+						expr = "import <nixpkgs> { }",
+					},
+					formatting = {
+						command = { "alejandra" },
+					},
+				},
 			},
 		},
 	},
