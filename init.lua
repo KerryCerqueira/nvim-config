@@ -24,6 +24,9 @@ vim.opt.tabstop = 3
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
 if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.85
 	vim.g.neovide_transparency = 0.9
