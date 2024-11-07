@@ -10,6 +10,14 @@ return {
 					formatting = {
 						command = { "alejandra" },
 					},
+					options = {
+						nixos = {
+							expr = "nixpkgs#nixos-options";
+						},
+						home_manager =  {
+							expr =  "(import <home-manager/modules> { configuration = ~/.config/home-manager/home.nix; pkgs = import <nixpkgs> {}; }).options"
+						},
+					},
 				},
 			},
 		},
