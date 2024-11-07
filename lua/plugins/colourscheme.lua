@@ -11,6 +11,7 @@ return {
 		priority = 1000,
 		init = function() vim.cmd.colorscheme("catppuccin-mocha") end,
 		opts = {
+			term_colors = true,
 			integrations = {
 				-- aerial = true,
 				-- alpha = true,
