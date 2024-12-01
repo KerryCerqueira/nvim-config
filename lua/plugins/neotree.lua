@@ -6,7 +6,6 @@ return { -- neotree
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 		"mrbjarksen/neo-tree-diagnostics.nvim",
-		"3rd/image.nvim",
 		{ -- nvim-window-picker
 			's1n7ax/nvim-window-picker',
 			version = '2.*',
