@@ -118,4 +118,8 @@ return {
 		"stevearc/dressing.nvim",
 		event = "VeryLazy",
 	},
+	{ -- mini.animate
+		"echasnovski/mini.animate",
+		opts = {},
+	},
 }
