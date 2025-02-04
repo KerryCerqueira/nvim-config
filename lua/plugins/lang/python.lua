@@ -1,11 +1,13 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = function(_, opts)
-			if type(opts.ensure_installed) == "table" then
-				vim.list_extend(opts.ensure_installed, { "ninja", "python", "rst", "toml" })
-			end
-		end,
+		"Vigemus/iron.nvim",
+		opts = {
+			config = {
+				repl_definition = {
+					python = require("iron.fts.python").ipython
+				},
+			},
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -33,37 +35,20 @@ return {
 		},
 	},
 	{
-		"mfussenegger/nvim-dap",
-		optional = true,
-		dependencies = {
-			"mfussenegger/nvim-dap-python",
-			keys = {
-				{ "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-				{ "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+		'stevearc/conform.nvim',
+		opts = {
+			formatters_by_ft = {
+				python = { "black" },
 			},
 		},
 	},
 	{
-		"linux-cultist/venv-selector.nvim",
-		dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
-		cmd = "VenvSelect",
+		"mfussenegger/nvim-lint",
+		optional = true,
 		opts = {
-			dap_enabled = true,
-			name = {
-				"venv",
-				".venv",
-				"env",
-				".env",
+			linters_by_ft = {
+				python = { "flake8" },
 			},
-			anaconda_base_path = "/home/kerry/miniforge3",
-			anaconda_envs_path = "/home/kerry/miniforge3/envs"
 		},
-		keys = {
-			{
-				"<leader>Pv",
-				"<cmd>:VenvSelect<cr>",
-				desc = "Select VirtualEnv"
-			}
-		},
-	},
+	}
 }
