@@ -3,6 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "RRethy/nvim-treesitter-endwise" },
 		build = function()
 			require("nvim-treesitter.install").update({ with_sync = true })()
 		end,
@@ -16,13 +17,14 @@ return {
 			auto_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
+			endwise = { enable = true },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<C-Space>",
-					node_incremental = "<C-Space>",
-					scope_incremental = "<TAB>",
-					node_decremental = "<S-TAB>",
+					init_selection = '<CR>',
+					scope_incremental = '<CR>',
+					node_incremental = '<TAB>',
+					node_decremental = '<S-TAB>',
 				},
 			},
 		},
@@ -40,7 +42,7 @@ return {
 		opts = { mode = "cursor", max_lines = 3 },
 		keys = {
 			{
-				"<leader>ut",
+				"\\tc",
 				function()
 					require("treesitter-context").toggle()
 					vim.notify("Toggle treesitter context.")
