@@ -1,14 +1,5 @@
 return {
 	{
-		"folke/which-key.nvim",
-		optional = true,
-		opts = {
-			defaults = {
-				["<localLeader>l"] = { name = "+vimtex" },
-			},
-		},
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)
 			if type(opts.ensure_installed) == "table" then
@@ -21,11 +12,10 @@ return {
 			end
 		end,
 	},
-
 	{
 		"lervag/vimtex",
 		lazy = false,
-		config = function()
+		init = function()
 			vim.api.nvim_create_autocmd({ "FileType" }, {
 				group = vim.api.nvim_create_augroup(
 					"lazyvim_vimtex_conceal",
@@ -36,13 +26,23 @@ return {
 					vim.wo.conceallevel = 2
 				end,
 			})
-
+		end,
+		config = function()
 			vim.g.vimtex_mappings_disable = { ["n"] = { "K" } }
 			vim.g.vimtex_quickfix_method = (
 				vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
 			)
 			vim.g.vimtex_view_method = "zathura"
 		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
+		optional = true,
+		opts = {
+			linters_by_ft = {
+				tex = { "chktex" },
+			},
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
