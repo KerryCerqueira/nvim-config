@@ -6,9 +6,10 @@ return {
 				hyprls = {},
 			},
 		},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = { ensure_installed = { "hyprlang", },},
+		init = function()
+			vim.filetype.add({
+				pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+			})
+		end
 	},
 }
