@@ -1,5 +1,9 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	dependencies = {
+		"arkav/lualine-lsp-progress",
+		"AndreM222/copilot-lualine",
+	},
 	event = "VeryLazy",
 	init = function()
 		vim.g.lualine_laststatus = vim.o.laststatus
@@ -20,28 +24,32 @@ return {
 
 		return {
 			options = {
+				section_separators = { left = '', right = '' },
+				component_separators = { left = '', right = '' },
 				theme = "auto",
 				globalstatus = true,
 				disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch" },
+				lualine_b = { "branch", },
 
 				lualine_c = {
 					"filename",
 					{
 						"diagnostics",
 						symbols = {
-							error = require("icons").lspconfig_diagnostic_icons.Error,
-							warn = require("icons").lspconfig_diagnostic_icons.Warn,
-							info = require("icons").lspconfig_diagnostic_icons.Info,
-							hint = require("icons").lspconfig_diagnostic_icons.Hint,
+							error = " ",
+							warn = " ",
+							info = " ",
+							hint = " ",
 						},
 					},
 					{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 				},
 				lualine_x = {
+					"copilot",
+					"lsp_progress",
 					{
 						"diff",
 						symbols = {
@@ -71,31 +79,7 @@ return {
 					end,
 				},
 			},
-			extensions = { "neo-tree", "lazy", "quickfix", "trouble", "fzf" },
-			tabline = {
-				lualine_a = {{
-					'tabs',
-					mode = 2,
-					path = 1,
-					use_mode_colors = true,
-				}},
-				lualine_z = {{
-					"buffers",
-					mode = 2,
-				}},
-			},
-			winbar = {
-				lualine_a = {{
-					"filename",
-					path = 1,
-				}},
-			},
-			inactive_winbar = {
-				lualine_a = {{
-					"filename",
-					path = 1,
-				}},
-			}
+			extensions = {"lazy", "quickfix", "trouble", "fzf" },
 		}
 	end,
 }

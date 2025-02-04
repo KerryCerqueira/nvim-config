@@ -1,55 +1,114 @@
 return {
 	{
 		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
-		opts = { use_diagnostic_signs = true },
+		cmd = "Trouble",
 		keys = {
 			{
-				"<Leader>xx",
-				"<cmd>TroubleToggle document_diagnostics<cr>",
-				desc = "Document diagnostics"
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
 			},
 			{
-				"<Leader>xX",
-				"<cmd>TroubleToggle workspace_diagnostics<cr>",
-				desc = "Workspace Diagnostics (Trouble)"
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
 			},
 			{
-				"<Leader>xL",
-				"<cmd>TroubleToggle loclist<cr>",
-				desc = "Location List (Trouble)"
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false win.position=left<cr>",
+				desc = "Symbols (Trouble)",
 			},
 			{
-				"<Leader>xQ",
-				"<cmd>TroubleToggle quickfix<cr>",
-				desc = "Quickfix List (Trouble)"
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle win.position=bottom<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
 			},
 			{
 				"[q",
 				function()
 					if require("trouble").is_open() then
-						require("trouble").previous({ skip_groups = true, jump = true })
+						require("trouble").prev({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cprev)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
 					end
 				end,
-				desc = "Previous trouble/quickfix item",
+				desc = "Previous Trouble/Quickfix Item",
 			},
 			{
 				"]q",
 				function()
 					if require("trouble").is_open() then
 						require("trouble").next({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cnext)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
 					end
 				end,
-				desc = "Next trouble/quickfix item",
+				desc = "Next Trouble/Quickfix Item",
 			},
+		},
+		opts = {
+			open_no_results = true,
 		},
 	},
 	{
-		"folke/which-key.nvim",
+		"folke/edgy.nvim",
 		optional = true,
 		opts = {
-			defaults = {
-				["<Leader>x"] = { name = "+trouble" },
+			bottom = {
+				{
+					title = "Diagnostics",
+					ft = "trouble",
+					filter = function(_, win)
+						return vim.w[win].trouble
+							and vim.w[win].trouble.position == "bottom"
+							and vim.w[win].trouble.type == "split"
+							and vim.w[win].trouble.relative == "editor"
+							and vim.w[win].trouble.mode == "diagnostics"
+							and not vim.w[win].trouble_preview
+					end,
+				},
+			},
+			left = {
+				{
+					title = "LSP Defs/Refs/Decs",
+					ft = "trouble",
+					filter = function(_, win)
+						return vim.w[win].trouble
+							and vim.w[win].trouble.position == "left"
+							and vim.w[win].trouble.type == "split"
+							and vim.w[win].trouble.relative == "editor"
+							and vim.w[win].trouble.mode == "lsp"
+							and not vim.w[win].trouble_preview
+					end,
+				},
+				{
+					title = "",
+					ft = "trouble",
+					filter = function(_, win)
+						return vim.w[win].trouble
+							and vim.w[win].trouble.position == "left"
+							and vim.w[win].trouble.type == "split"
+							and vim.w[win].trouble.relative == "editor"
+							and vim.w[win].trouble.mode == "symbols"
+							and not vim.w[win].trouble_preview
+					end,
+				},
 			},
 		},
 	},

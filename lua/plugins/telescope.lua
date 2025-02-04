@@ -3,20 +3,23 @@ return { -- telescope
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"natecraddock/telescope-zf-native.nvim/",
+		"debugloop/telescope-undo.nvim",
+		"nvim-telescope/telescope-symbols.nvim",
+		"mrcjkb/telescope-manix",
+		"nvim-telescope/telescope-frecency.nvim",
 	},
 	cmd = "Telescope",
 	keys = { -- lazy load commands
 		{
-			"<leader>?",
+			"<leader>/",
 			function()
 				require("telescope.builtin").live_grep()
 			end,
 			desc = "Grep from cwd"
 		},
 		{
-			"<leader>/",
+			"<leader>ff",
 			function()
 				require("telescope.builtin").current_buffer_fuzzy_find()
 			end,
@@ -30,7 +33,7 @@ return { -- telescope
 			desc = "Command history search"
 		},
 		{
-			"<leader>ff",
+			"<leader>fF",
 			function()
 				require("telescope.builtin").find_files()
 			end,
@@ -93,6 +96,34 @@ return { -- telescope
 			desc = "Search registers"
 		},
 		{
+			'<leader>fE',
+			function()
+				require("telescope.builtin").symbols()
+			end,
+			desc = "Search symbols"
+		},
+		{
+			'<leader>fN',
+			function()
+				require("telescope").extensions.manix.manix()
+			end,
+			desc = "Search manix"
+		},
+		{
+			'<leader>fN',
+			function()
+				require("telescope").extensions.manix.manix()
+			end,
+			desc = "Search manix"
+		},
+		{
+			'<leader>fu',
+			function()
+				require("telescope").extensions.undo.undo()
+			end,
+			desc = "Search undo tree"
+		},
+		{
 			'<leader>Gc',
 			function()
 				require("telescope.builtin").git_commits()
@@ -110,15 +141,23 @@ return { -- telescope
 				},
 			},
 		},
-		extensions = { fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = "respect_case",
-		}, },
+		extensions = {
+			fzf = {
+				fuzzy = true,
+				override_generic_sorter = true,
+				override_file_sorter = true,
+				case_mode = "respect_case",
+			},
+			undo = {},
+		},
 	},
 	config = function(_, opts)
 		require("telescope").setup(opts)
-		require("telescope").load_extension("fzf")
+		require("telescope").load_extension("zf-native")
+		require("telescope").load_extension("undo")
+		require("telescope").load_extension("manix")
+		require("telescope").load_extension("frecency")
+		--TODO: Add project picker
+		--TODO: Exchnage file finders for frecency ones
 	end,
 }

@@ -9,9 +9,6 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							workspace = {
-								checkThirdParty = false,
-							},
 							completion = {
 								callSnippet = "Replace",
 							},
@@ -23,6 +20,14 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		opts = { ensure_installed = { "luap", "luau", "luadoc", "lua", },},
+		opts = { ensure_installed = { "luap", "luau", "luadoc", "lua" } },
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+			},
+		},
 	},
 }
