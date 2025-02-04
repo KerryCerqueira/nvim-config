@@ -1,134 +1,82 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{
-				"Saecki/crates.nvim",
-				event = { "BufRead Cargo.toml" },
-				opts = {
-					completion = {
-						cmp = { enabled = true },
+		"mrcjkb/rustaceanvim",
+		version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
+		lazy = false,
+		ft = { "rust" },
+		opts = {
+			server = {
+				on_attach = function(_, bufnr)
+					vim.keymap.set("n", "<leader>cR", function()
+						vim.cmd.RustLsp("codeAction")
+					end, { desc = "Code Action", buffer = bufnr })
+					vim.keymap.set("n", "<leader>dr", function()
+						vim.cmd.RustLsp("debuggables")
+					end, { desc = "Rust Debuggables", buffer = bufnr })
+				end,
+				default_settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+							loadOutDirsFromCheck = true,
+							buildScripts = {
+								enable = true,
+							},
+						},
+						checkOnSave = true,
+						diagnostics = { enable = true, },
+						procMacro = {
+							enable = true,
+							ignored = {
+								["async-trait"] = { "async_trait" },
+								["napi-derive"] = { "napi" },
+								["async-recursion"] = { "async_recursion" },
+							},
+						},
+						files = {
+							excludeDirs = {
+								".direnv",
+								".git",
+								".github",
+								".gitlab",
+								"bin",
+								"node_modules",
+								"target",
+								"venv",
+								".venv",
+							},
+						},
 					},
 				},
 			},
 		},
-		opts = function(_, opts)
-			opts.sources = opts.sources or {}
-			vim.list_extend(opts.sources, { { name = "crates" }, })
+		config = function(_, opts)
+			vim.g.rustaceanvim = opts
 		end,
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "ron", "rust", "toml" })
-		end,
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		event = { "BufRead *.rs" },
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
 		opts = {
-			server = {
-				on_attach = function(_, bufnr)
-					local rt = require("rust-tools")
-					vim.keymap.set(
-						{ "n", "v" }, "K",
-						rt.hover_actions.hover_actions,
-						{
-							buffer = bufnr,
-							silent = true,
-							noremap = true,
-							desc = "See available hover actions",
-						}
-					)
-					vim.keymap.set(
-						{ "n", "v" },
-						"<Leader>ca",
-						rt.code_action_group.code_action_group,
-						{
-							buffer = bufnr,
-							silent = true,
-							noremap = true,
-							desc = "See available code actions",
-						}
-					)
-					local group_id = vim.api.nvim_create_augroup("RustLSP", {clear = true})
-					vim.api.nvim_create_autocmd(
-						"CursorHold",
-						{
-							group = group_id,
-							pattern = "*.rs",
-							callback = vim.lsp.buf.document_highlight
-						}
-					)
-					vim.api.nvim_create_autocmd(
-						{ "CursorMoved", "InsertEnter" },
-						{
-							group = group_id,
-							pattern = "*.rs",
-							callback = vim.lsp.buf.clear_references
-						}
-					)
-					vim.api.nvim_create_autocmd(
-						{ "BufEnter", "CursorHold", "InsertLeave"},
-						{
-							group = group_id,
-							pattern = "*.rs",
-							callback = vim.lsp.codelens.refresh
-						}
-					)
-				end,
-			},
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				taplo = {
-					on_attach = function()
-						vim.api.nvim_create_autocmd(
-							{"BufRead", "BufNewFile"},
-							{
-								group = vim.api.nvim_create_augroup(
-									"cargo_toml_documentation",
-									{ clear = true }
-								),
-								pattern = "Cargo.toml",
-								callback = function()
-									vim.set.keymap(
-										{ "n", "v" },
-										"K",
-										function()
-											if require("crates").popup_available() then
-												require("crates").show_popup()
-											else
-												vim.lsp.buf.hover()
-											end
-										end,
-										{
-											buffer = 0, noremap = true, silent = true,
-											Desc = "Show crate documentation",
-										}
-									)
-								end,
-							}
-						)
-					end,
+			completion = {
+				crates = {
+					enabled = true,
 				},
 			},
+			lsp = {
+				enabled = true,
+				actions = true,
+				completion = true,
+				hover = true,
+			},
 		},
 	},
-	-- {
-	-- 	"nvim-neotest/neotest",
-	-- 	optional = true,
-	-- 	dependencies = {
-	-- 		"rouge8/neotest-rust",
-	-- 	},
-	-- 	opts = {
-	-- 		adapters = {
-	-- 			["neotest-rust"] = {},
-	-- 		},
-	-- 	},
-	-- },
+	{
+		'stevearc/conform.nvim',
+		opts = {
+			formatters_by_ft = {
+				rust = { "rustfmt", lsp_format = "fallback" },
+			},
+		},
+	},
 }
