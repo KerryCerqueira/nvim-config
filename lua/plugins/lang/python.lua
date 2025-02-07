@@ -4,7 +4,7 @@ return {
 		opts = {
 			config = {
 				repl_definition = {
-					python = require("iron.fts.python").ipython
+					python = require("iron.fts.python").ipython,
 				},
 			},
 		},
@@ -35,10 +35,10 @@ return {
 		},
 	},
 	{
-		'stevearc/conform.nvim',
+		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
-				python = { "black" },
+				python = { black = { prepend_args = { "--line-length=79" } } },
 			},
 		},
 	},
@@ -50,5 +50,5 @@ return {
 				python = { "flake8" },
 			},
 		},
-	}
+	},
 }
