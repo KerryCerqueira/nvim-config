@@ -3,7 +3,7 @@ return { -- telescope
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"natecraddock/telescope-zf-native.nvim/",
+		"natecraddock/telescope-zf-native.nvim",
 		"debugloop/telescope-undo.nvim",
 		"nvim-telescope/telescope-symbols.nvim",
 		"mrcjkb/telescope-manix",
