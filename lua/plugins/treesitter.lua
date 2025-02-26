@@ -31,6 +31,19 @@ return {
 		init = function()
 			vim.opt.foldmethod = "expr"
 			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			vim.treesitter.language.register("bash", "kitty")
+			vim.filetype.add({
+				extension = { rasi = "rasi", rofi = "rasi", wofi = "rasi" },
+				filename = {
+					["vifmrc"] = "vim",
+				},
+				pattern = {
+					[".*/waybar/config"] = "jsonc",
+					[".*/kitty/.+%.conf"] = "kitty",
+					[".*/hypr/.+%.conf"] = "hyprlang",
+					["%.env%.[%w_.-]+"] = "sh",
+				},
+			})
 		end,
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
