@@ -6,6 +6,7 @@ return {
 				bashls = {
 					filetypes = { "bash", "sh", "zsh",},
 				},
+				fish_lsp = {},
 			},
 		},
 	},
@@ -14,6 +15,8 @@ return {
 		opts = {
 			formatters_by_ft = {
 				bash = { "shellcheck" },
+				sh = { "shellcheck" },
+				zsh = { "shellcheck" },
 			},
 		},
 	}

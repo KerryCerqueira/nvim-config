@@ -35,15 +35,7 @@ return {
 		build = ":Copilot auth",
 		event = "InsertEnter",
 		opts = {
-			suggestion = {
-				enabled = not vim.g.ai_cmp,
-				auto_trigger = true,
-				keymap = {
-					accept = false, -- handled by nvim-cmp / blink.cmp
-					next = "<M-]>",
-					prev = "<M-[>",
-				},
-			},
+			suggestion = { enabled = false, },
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,
@@ -120,12 +112,13 @@ return {
 			-- },
 			{ "rafamadriz/friendly-snippets", },
 			{ "giuxtaposition/blink-cmp-copilot", },
+			{ "xzbdmw/colorful-menu.nvim", },
 		},
 		version = '*',
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-			keymap = { preset = "enter" },
+			keymap = { preset = "cmdline" },
 			appearance = { nerd_font_variant = "normal" },
 			sources = {
 				-- add git source
@@ -155,15 +148,6 @@ return {
 				enabled = true,
 			},
 			completion = {
-				list = {
-					selection = {
-						preselect = function(_)
-							local snippet_active = require('blink.cmp').snippet_active
-							local cur_mode = vim.api.nvim_get_mode().mode
-							return not snippet_active({ direction = 1 }) and cur_mode ~= "c"
-						end,
-					},
-				},
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 500,
@@ -172,10 +156,23 @@ return {
 					enabled = true,
 				},
 				menu = {
-					auto_show = true,
 					draw = {
-						columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { "source_name" }, },
-					}
+						columns = {
+							{ 'label', 'label_description', gap = 1 },
+							{ "source_name" },
+							{ 'kind_icon' },
+						},
+						components = {
+							label = {
+								text = function(ctx)
+									return require("colorful-menu").blink_components_text(ctx)
+								end,
+								highlight = function(ctx)
+									return require("colorful-menu").blink_components_highlight(ctx)
+								end,
+							},
+						},
+					},
 				}
 			}
 		},
