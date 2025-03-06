@@ -118,7 +118,15 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-			keymap = { preset = "cmdline" },
+			keymap = {
+				preset = "cmdline",
+				['<CR>'] = { "accept", "fallback" },
+			},
+			cmdline = {
+				keymap = {
+					['<CR>'] = { "accept", "fallback" },
+				},
+			},
 			appearance = { nerd_font_variant = "normal" },
 			sources = {
 				-- add git source
