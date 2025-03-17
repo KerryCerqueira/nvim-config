@@ -23,8 +23,7 @@ return {
 				desc = "Format (conform-nvim)",
 			},
 		},
-		opts = {
-		},
+		opts = {},
 		config = function(_, opts)
 			local conform = require("conform")
 			conform.setup(opts)

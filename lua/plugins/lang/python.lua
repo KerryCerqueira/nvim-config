@@ -37,8 +37,15 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {
+			formatters = {
+				black = { prepend_args = { "--line-length=79" } },
+			},
 			formatters_by_ft = {
-				python = { black = { prepend_args = { "--line-length=79" } } },
+				python = {
+					"black",
+					"isort",
+					"docformatter",
+				},
 			},
 		},
 	},
