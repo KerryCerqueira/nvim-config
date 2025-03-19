@@ -111,6 +111,10 @@ return {
 			-- 	dependencies = { 'nvim-lua/plenary.nvim' }
 			-- },
 			{ "rafamadriz/friendly-snippets", },
+			{
+				"danymat/neogen",
+				opts = {snippet_engine = "nvim"},
+			},
 			{ "giuxtaposition/blink-cmp-copilot", },
 			{ "xzbdmw/colorful-menu.nvim", },
 		},
@@ -120,7 +124,10 @@ return {
 		opts = {
 			keymap = {
 				preset = "cmdline",
-				['<CR>'] = { "accept", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
+				["<C-f>"] = { "snippet_forward", "fallback",},
+				["<C-b>"] = { "snippet_backward", "fallback",},
+				['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 			},
 			cmdline = {
 				keymap = {
@@ -130,8 +137,11 @@ return {
 			appearance = { nerd_font_variant = "normal" },
 			sources = {
 				-- add git source
-				default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
+				default = { 'lsp', 'snippets', 'path', 'buffer' },
 				providers = {
+					lsp = {
+						async = true,
+					},
 					copilot = {
 						name = "copilot",
 						module = "blink-cmp-copilot",

@@ -51,45 +51,6 @@ return {
 		version = false
 	},
 	{
-		'echasnovski/mini.map',
-		dependencies = {
-			"lewis6991/gitsigns.nvim",
-			"folke/snacks.nvim",
-		},
-		version = false,
-		event = "BufEnter",
-		keys = {
-			{
-				"\\mm",
-				function()
-					require("mini.map").toggle()
-				end,
-				desc = "Toggle minimap",
-			},
-			{
-				"\\mf",
-				function()
-					require("mini.map").toggle_focus()
-				end,
-				desc = "Toggle minimap focus"
-			},
-		},
-		init = function()
-			vim.api.nvim_create_autocmd("BufRead", {
-				pattern = "*",
-				callback = require("mini.map").open,
-			})
-		end,
-		opts = {
-			symbols = {encode = require("mini.map").gen_encode_symbols.dot("4x2")},
-			integrations = {
-				require("mini.map").gen_integration.builtin_search(),
-				require("mini.map").gen_integration.diagnostic(),
-				require("mini.map").gen_integration.gitsigns(),
-			},
-		},
-	},
-	{
 		'echasnovski/mini.pairs',
 		event = "BufEnter",
 		version = false,

@@ -30,31 +30,28 @@ return {
 							desc = "Organize Imports",
 						},
 					},
+					init_options = {
+						settings = {
+							lineLength = 79,
+							format = {
+								indentStyle = "tab",
+								docstringCodeFormat = true,
+							},
+						},
+					},
 				},
 			},
 		},
 	},
 	{
-		"stevearc/conform.nvim",
+		"danymat/neogen",
 		opts = {
-			formatters = {
-				black = { prepend_args = { "--line-length=79" } },
-			},
-			formatters_by_ft = {
+			languages = {
 				python = {
-					"black",
-					"isort",
-					"docformatter",
+					template = {
+						annotation_convention = "reST",
+					},
 				},
-			},
-		},
-	},
-	{
-		"mfussenegger/nvim-lint",
-		optional = true,
-		opts = {
-			linters_by_ft = {
-				python = { "flake8" },
 			},
 		},
 	},

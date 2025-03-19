@@ -18,7 +18,7 @@ return {
 			{
 				"<leader>cf",
 				function()
-					require("conform").format()
+					require("conform").format({async = true})
 				end,
 				desc = "Format (conform-nvim)",
 			},
