@@ -5,7 +5,7 @@
 	};
 	outputs = { ... }: {
 		homeManagerModules = {
-			kerryNeovimConfig = { pkgs, config, ... }:
+			config = { pkgs, config, ... }:
 				let
 					nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 					nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
