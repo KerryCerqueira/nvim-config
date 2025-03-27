@@ -45,15 +45,6 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {
-			formatters = {
-				prettier = {
-					prepend_args = {
-						"--use-tabs",
-						"--print-width 72",
-						"--prose-wrap always"
-					},
-				},
-			},
 			formatters_by_ft = {
 				markdown = { "prettier" },
 			},

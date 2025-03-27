@@ -24,7 +24,16 @@ return {
 				desc = "Format (conform-nvim)",
 			},
 		},
-		opts = {},
+		opts = {
+			formatters = {
+				prettier = {
+					prepend_args = {
+						"--print-width 72",
+						"--prose-wrap always"
+					},
+				},
+			},
+		},
 		config = function(_, opts)
 			local conform = require("conform")
 			conform.setup(opts)
@@ -45,6 +54,6 @@ return {
 					end
 				}
 			)
-		end
-	}
+		end,
+	},
 }
