@@ -4,7 +4,7 @@
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 	};
 	outputs = { ... }: {
-		homeManagerModules.default = { pkgs, config, ... }:
+		homeManagerModules.nvim-config = { pkgs, config, ... }:
 			let
 				nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 				nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
