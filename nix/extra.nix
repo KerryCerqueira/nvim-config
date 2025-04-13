@@ -24,12 +24,10 @@ in {
 			alejandra
 			bash-language-server
 			shellcheck
-			stylua
 			taplo
 			yaml-language-server
 			manix
 			lynx
-			texlive.combined.scheme-full
 			marksman
 			markdownlint-cli2
 			python312Packages.docformatter
@@ -39,7 +37,6 @@ in {
 			fish-lsp
 			taplo
 			ruff
-			texlab
 			nil
 		];
 		plugins = with pkgs.vimPlugins; [
@@ -81,7 +78,6 @@ in {
 			mini-surround
 			mini-trailspace
 			neoconf-nvim
-			neodev-nvim
 			neogen
 			neogit
 			neo-tree-nvim
