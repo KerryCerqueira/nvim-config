@@ -23,12 +23,10 @@ in {
 			gh
 			alejandra
 			bash-language-server
-			nodePackages.prettier
 			shellcheck
 			stylua
 			taplo
 			yaml-language-server
-			vscode-langservers-extracted
 			manix
 			lynx
 			texlive.combined.scheme-full
@@ -50,7 +48,6 @@ in {
 			bufferline-nvim
 			catppuccin-nvim
 			colorful-menu-nvim
-			conform-nvim
 			CopilotChat-nvim
 			copilot-cmp
 			copilot-lua
@@ -100,7 +97,6 @@ in {
 			nvim-web-devicons
 			render-markdown-nvim
 			rustaceanvim
-			SchemaStore-nvim
 			snacks-nvim
 			vimtex
 			which-key-nvim
