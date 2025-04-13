@@ -10,6 +10,7 @@ in {
 		];
 		plugins = with pkgs.vimPlugins; [
 			iron-nvim
+			neogen
 		];
 	};
 	xdg.configFile."nvim/lua/lang/python.lua".source = pythonLuaModule;

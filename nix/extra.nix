@@ -21,14 +21,12 @@ in {
 		];
 		extraPackages = with pkgs; [
 			gh
-			alejandra
 			bash-language-server
 			shellcheck
 			taplo
 			yaml-language-server
 			manix
 			lynx
-			python312Packages.docformatter
 			fish-lsp
 			taplo
 		];
@@ -71,7 +69,6 @@ in {
 			mini-surround
 			mini-trailspace
 			neoconf-nvim
-			neogen
 			neogit
 			neo-tree-nvim
 			nvim-lspconfig
