@@ -43,7 +43,6 @@ in {
 			ruff
 			texlab
 			nil
-			hyprls
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
