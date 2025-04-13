@@ -28,12 +28,9 @@ in {
 			yaml-language-server
 			manix
 			lynx
-			marksman
 			python312Packages.docformatter
-			python312Packages.pylatexenc
 			fish-lsp
 			taplo
-			nil
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
