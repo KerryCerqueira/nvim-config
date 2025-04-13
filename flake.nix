@@ -9,7 +9,7 @@
 				{
 					imports = [
 						(import ./nix/extra.nix { inherit luaModules; })
-						(import ./nix/python.nix { inherit luaModules; })
+						(import ./nix/lang { inherit luaModules; })
 					];
 				};
 		};
