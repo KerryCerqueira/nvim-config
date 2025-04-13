@@ -21,14 +21,8 @@ in {
 		];
 		extraPackages = with pkgs; [
 			gh
-			bash-language-server
-			shellcheck
-			taplo
-			yaml-language-server
 			manix
 			lynx
-			fish-lsp
-			taplo
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
@@ -40,7 +34,6 @@ in {
 			copilot-cmp
 			copilot-lua
 			copilot-lualine
-			crates-nvim
 			diffview-nvim
 			edgy-nvim
 			friendly-snippets
@@ -80,7 +73,6 @@ in {
 			nvim-treesitter-textsubjects
 			nvim-ts-context-commentstring
 			nvim-web-devicons
-			rustaceanvim
 			which-key-nvim
 		];
 		extraLuaConfig = # lua
