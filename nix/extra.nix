@@ -85,7 +85,6 @@ in {
 			neogen
 			neogit
 			neo-tree-nvim
-			nvim-lint
 			nvim-lspconfig
 			nvim-treesitter.withAllGrammars
 			nvim-treesitter-context
@@ -98,7 +97,6 @@ in {
 			render-markdown-nvim
 			rustaceanvim
 			snacks-nvim
-			vimtex
 			which-key-nvim
 		];
 		extraLuaConfig = # lua
