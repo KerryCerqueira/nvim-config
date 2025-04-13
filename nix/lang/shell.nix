@@ -11,7 +11,7 @@ in {
 		];
 		plugins = with pkgs.vimPlugins; [
 			nvim-treesitter.withAllGrammars
-			nvim-conform
+			conform-nvim
 		];
 	};
 }

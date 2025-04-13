@@ -1,6 +1,6 @@
 {
 	description = "Kerry Cerqueira's neovim confuguration";
-	outputs = { self, ... }@inputs:
+	outputs = { ... }:
 		let
 			luaModules = ./lua;
 		in
