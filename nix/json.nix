@@ -2,6 +2,7 @@
 let
 	jsonLuaModule = luaModules + /plugins/lang/json.lua;
 in {
+	xdg.configFile."nvim/lua/lang/json.lua".source = jsonLuaModule;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			vscode-langservers-extracted
@@ -12,5 +13,4 @@ in {
 			conform-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/lang/json.lua".source = jsonLuaModule;
 }

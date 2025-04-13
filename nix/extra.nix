@@ -29,14 +29,10 @@ in {
 			manix
 			lynx
 			marksman
-			markdownlint-cli2
 			python312Packages.docformatter
 			python312Packages.pylatexenc
-			lua-language-server
-			jdt-language-server
 			fish-lsp
 			taplo
-			ruff
 			nil
 		];
 		plugins = with pkgs.vimPlugins; [
@@ -90,9 +86,7 @@ in {
 			nvim-treesitter-textsubjects
 			nvim-ts-context-commentstring
 			nvim-web-devicons
-			render-markdown-nvim
 			rustaceanvim
-			snacks-nvim
 			which-key-nvim
 		];
 		extraLuaConfig = # lua

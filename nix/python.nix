@@ -1,14 +1,16 @@
 { luaModules }: { pkgs, ...}:
 let
-  pythonLuaModule = luaModules + /plugins/lang/python.lua;
+	pythonLuaModule = luaModules + /plugins/lang/python.lua;
 in {
-  programs.neovim = {
-    extraPackages = with pkgs; [
-      pyright
-    ];
-    plugins = with pkgs.vimPlugins; [
-      iron-nvim
-    ];
-  };
-  xdg.configFile."nvim/lua/lang/python.lua".source = pythonLuaModule;
+	programs.neovim = {
+		extraPackages = with pkgs; [
+			pyright
+			jdt-language-server
+			ruff
+		];
+		plugins = with pkgs.vimPlugins; [
+			iron-nvim
+		];
+	};
+	xdg.configFile."nvim/lua/lang/python.lua".source = pythonLuaModule;
 }
