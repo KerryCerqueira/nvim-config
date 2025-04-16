@@ -3,10 +3,13 @@ let
 	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
 in {
-	# xdg.configFile."nvim/lua" = {
-	# 	source = luaModules;
-	# 	recursive = true;
-	# };
+	imports = [
+		(import ./lang { inherit luaModules; })
+		(import ./ui.nix { inherit luaModules; })
+		(import ./coding.nix { inherit luaModules; })
+		(import ./editing.nix { inherit luaModules; })
+		(import ./git.nix { inherit luaModules; })
+	];
 	programs.neovim = {
 		enable = true;
 		withRuby = true;
@@ -16,64 +19,8 @@ in {
 		vimAlias = true;
 		vimdiffAlias = true;
 		defaultEditor = true;
-		extraLuaPackages = ps: [
-			ps.tiktoken_core
-		];
-		extraPackages = with pkgs; [
-			gh
-			manix
-			lynx
-		];
 		plugins = with pkgs.vimPlugins; [
-			blink-cmp
-			blink-cmp-copilot
-			bufferline-nvim
-			catppuccin-nvim
-			colorful-menu-nvim
-			CopilotChat-nvim
-			copilot-cmp
-			copilot-lua
-			copilot-lualine
-			diffview-nvim
-			edgy-nvim
-			friendly-snippets
-			gitsigns-nvim
-			image-nvim
 			lazy-nvim
-			lualine-nvim
-			lualine-lsp-progress
-			telescope-frecency-nvim
-			telescope-manix
-			telescope-nvim
-			telescope-symbols-nvim
-			telescope-undo-nvim
-			telescope-zf-native-nvim
-			trouble-nvim
-			mini-ai
-			mini-align
-			mini-basics
-			mini-bracketed
-			mini-comment
-			mini-icons
-			mini-jump
-			mini-move
-			mini-pairs
-			mini-splitjoin
-			mini-surround
-			mini-trailspace
-			neoconf-nvim
-			neogit
-			neo-tree-nvim
-			nvim-lspconfig
-			nvim-treesitter.withAllGrammars
-			nvim-treesitter-context
-			nvim-treesitter-endwise
-			nvim-treesitter-pairs
-			nvim-treesitter-textobjects
-			nvim-treesitter-textsubjects
-			nvim-ts-context-commentstring
-			nvim-web-devicons
-			which-key-nvim
 		];
 		extraLuaConfig = # lua
 			''
@@ -82,7 +29,7 @@ in {
 			require("lazy").setup({
 				spec = {
 					{ import = "plugins" },
-					{ import = "plugins.lang" },
+					{ import = "lang" },
 					{
 						"folke/lazydev.nvim",
 						optional = true,

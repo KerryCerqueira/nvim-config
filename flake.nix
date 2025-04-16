@@ -8,8 +8,7 @@
 			homeManagerModules.nvim-config = { ... }:
 				{
 					imports = [
-						(import ./nix/extra.nix { inherit luaModules; })
-						(import ./nix/lang { inherit luaModules; })
+						(import ./nix { inherit luaModules; })
 					];
 				};
 		};
