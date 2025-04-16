@@ -3,6 +3,7 @@ let
 	uiLuaModule = luaModules + /plugins/ui.lua;
 in
 {
+	imports = [ ./neominimap.nix ];
 	xdg.configFile."nvim/lua/plugins/ui.lua".source = uiLuaModule;
 	programs.neovim = {
 		extraPackages = with pkgs; [

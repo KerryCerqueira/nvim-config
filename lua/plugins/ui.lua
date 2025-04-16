@@ -878,5 +878,24 @@ return {
 			--TODO: Add project picker
 			--TODO: Exchnage file finders for frecency ones
 		end,
-	}
+	},
+---@module "neominimap.config.meta"
+	{
+		"Isrothy/neominimap.nvim",
+		lazy = false,
+		keys = {
+			{ "\\mm", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
+			{ "\\mw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
+			{ "\\mt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
+			{ "\\mb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
+			{ "<leader>mf", "<cmd>Neominimap toggleFocus<cr>", desc = "Switch focus on minimap" },
+		},
+		init = function()
+			vim.g.neominimap = {
+				auto_enable = true,
+				layout = "split",
+				close_if_last_window = true,
+			}
+		end,
+	},
 }
