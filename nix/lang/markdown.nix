@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	markdownLuaModule = luaModules + /plugins/lang/markdown.lua;
+	markdownLuaModule = luaModules + /lang/markdown.lua;
 in {
 	xdg.configFile."nvim/lua/lang/markdown.lua".source = markdownLuaModule;
 	programs.neovim = {

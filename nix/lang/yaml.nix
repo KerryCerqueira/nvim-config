@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	yamlLuaModule = luaModules + /plugins/lang/yaml.lua;
+	yamlLuaModule = luaModules + /lang/yaml.lua;
 in {
 	xdg.configFile."nvim/lua/lang/yaml.lua".source = yamlLuaModule;
 	programs.neovim = {

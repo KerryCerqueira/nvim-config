@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	rustLuaModule = luaModules + /plugins/lang/rust.lua;
+	rustLuaModule = luaModules + /lang/rust.lua;
 in {
 	xdg.configFile."nvim/lua/lang/rust.lua".source = rustLuaModule;
 	programs.neovim = {

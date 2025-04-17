@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	jsonLuaModule = luaModules + /plugins/lang/json.lua;
+	jsonLuaModule = luaModules + /lang/json.lua;
 in {
 	xdg.configFile."nvim/lua/lang/json.lua".source = jsonLuaModule;
 	programs.neovim = {

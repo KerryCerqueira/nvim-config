@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	texLuaModule = luaModules + /plugins/lang/tex.lua;
+	texLuaModule = luaModules + /lang/tex.lua;
 in {
 	xdg.configFile."nvim/lua/lang/tex.lua".source = texLuaModule;
 	home.packages = with pkgs; [

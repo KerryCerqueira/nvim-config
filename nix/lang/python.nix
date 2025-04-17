@@ -1,6 +1,6 @@
 { luaModules }: { pkgs, ...}:
 let
-	pythonLuaModule = luaModules + /plugins/lang/python.lua;
+	pythonLuaModule = luaModules + /lang/python.lua;
 in {
 	xdg.configFile."nvim/lua/lang/python.lua".source = pythonLuaModule;
 	programs.neovim = {
