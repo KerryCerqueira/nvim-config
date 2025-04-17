@@ -21,7 +21,9 @@ in
 			mini-basics
 			mini-icons
 			neo-tree-nvim
+			nvim-ufo
 			nvim-web-devicons
+			promise-async
 			snacks-nvim
 			telescope-frecency-nvim
 			telescope-manix
