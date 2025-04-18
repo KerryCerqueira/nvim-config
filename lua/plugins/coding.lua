@@ -1,108 +1,4 @@
-local set_floating_diagnostics = function(bufnr)
-	vim.o.updatetime = 250
-	vim.api.nvim_create_autocmd("CursorHold", {
-		buffer = bufnr,
-		callback = function()
-			vim.diagnostic.open_float(nil, {
-				focusable = false,
-				close_events = {
-					"BufLeave", "CursorMoved", "InsertEnter", "FocusLost"
-				},
-				border = 'rounded',
-				source = 'always',
-				prefix = ' ',
-				scope = 'cursor',
-			})
-		end
-	})
-end
-local set_diagnostic_icons = function()
-	local diagnostic_icons = {
-		Error = " ",
-		Warn  = " ",
-		Hint  = " ",
-		Info  = " ",
-	}
-	for name, icon in pairs(diagnostic_icons) do
-		name = "DiagnosticSign" .. name
-		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-	end
-end
 return {
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		build = ":Copilot auth",
-		event = "InsertEnter",
-		opts = {
-			suggestion = { enabled = false, },
-			panel = { enabled = false },
-			filetypes = {
-				markdown = true,
-				help = true,
-			},
-		},
-	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "main",
-		cmd = "CopilotChat",
-		opts = function()
-			local user = vim.env.USER or "User"
-			user = user:sub(1, 1):upper() .. user:sub(2)
-			return {
-				auto_insert_mode = true,
-				question_header = "  " .. user .. " ",
-				answer_header = "  Copilot ",
-				window = {
-					width = 0.4,
-				},
-			}
-		end,
-		keys = {
-			{ "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-			{
-				"<leader>aa",
-				function()
-					return require("CopilotChat").toggle()
-				end,
-				desc = "Toggle (CopilotChat)",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>ax",
-				function()
-					return require("CopilotChat").reset()
-				end,
-				desc = "Clear (CopilotChat)",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>aq",
-				function()
-					local input = vim.fn.input("Quick Chat: ")
-					if input ~= "" then
-						require("CopilotChat").ask(input)
-					end
-				end,
-				desc = "Quick Chat (CopilotChat)",
-				mode = { "n", "v" },
-			},
-		},
-		config = function(_, opts)
-			local chat = require("CopilotChat")
-
-			vim.api.nvim_create_autocmd("BufEnter", {
-				pattern = "copilot-chat",
-				callback = function()
-					vim.opt_local.relativenumber = false
-					vim.opt_local.number = false
-				end,
-			})
-
-			chat.setup(opts)
-		end,
-	},
 	{
 		'saghen/blink.cmp',
 		dependencies = {
@@ -123,30 +19,32 @@ return {
 		---@type blink.cmp.Config
 		opts = {
 			keymap = {
-				preset = "cmdline",
-				["<CR>"] = { "accept", "fallback" },
-				["<C-f>"] = { "snippet_forward", "fallback",},
-				["<C-b>"] = { "snippet_backward", "fallback",},
-				['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+				preset = "enter",
 			},
 			cmdline = {
 				keymap = {
 					['<CR>'] = { "accept", "fallback" },
 				},
+				completion = {
+					menu = {
+						auto_show = function(ctx)
+							return vim.fn.getcmdtype() == ':'
+						end,
+					},
+					list = {
+						selection = {
+							preselect = false,
+						},
+					},
+				},
 			},
 			appearance = { nerd_font_variant = "normal" },
 			sources = {
 				-- add git source
-				default = { 'lsp', 'snippets', 'path', 'buffer' },
+				default = { 'lsp', 'snippets', 'path', },
 				providers = {
 					lsp = {
-						async = true,
-					},
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-						score_offset = 100,
-						async = true,
+						timeout_ms = 2000,
 					},
 					-- git = {
 					-- 	score_offset = 100,
@@ -173,7 +71,13 @@ return {
 				ghost_text = {
 					enabled = true,
 				},
+				list = {
+					selection = {
+						preselect = false,
+					},
+				},
 				menu = {
+					auto_show = true,
 					draw = {
 						columns = {
 							{ 'label', 'label_description', gap = 1 },
@@ -194,7 +98,6 @@ return {
 				}
 			}
 		},
-		opts_extend = { "sources.default" }
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -239,17 +142,18 @@ return {
 				desc = "Restart LSP"
 			},
 		},
-		opts = {
-			diagnostics = {
-				underline = true,
-				update_in_insert = false,
-				virtual_text = false,
-				severity_sort = true,
-			},
-			inlay_hints = {
-				enabled = true,
-			},
-		},
+		init = function()
+			vim.api.nvim_create_autocmd(
+				'LspAttach',
+				{
+					group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+					callback = function(ev)
+						vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+					end,
+				}
+			)
+			vim.lsp.inlay_hint.enable(true)
+		end,
 		config = function(_, opts)
 			local lspconfig = require("lspconfig")
 			local blink = require("blink.cmp")
@@ -257,23 +161,26 @@ return {
 				config.capabilities = blink.get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)
 			end
-			set_diagnostic_icons()
-			set_floating_diagnostics()
-			vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-			vim.api.nvim_create_autocmd(
-				'LspAttach',
-				{
-					group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-					callback = function(ev)
-						vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-						set_floating_diagnostics(ev.buf)
-					end,
-				}
-			)
 		end,
 	},
 	{
 		"Vigemus/iron.nvim",
+		dependencies = {
+			"folke/edgy.nvim",
+			optional = true,
+			opts = {
+				right = {
+					{
+						title = "Iron",
+						ft = "iron",
+						size = { width = 0.4 },
+						filter = function(buf)
+							return require("iron.lowlevel").repl_exists({ bufnr = buf })
+						end,
+					},
+				},
+			},
+		},
 		keys = {
 			{
 				"<Leader>rr",
@@ -323,19 +230,91 @@ return {
 		end,
 	},
 	{
-		"folke/edgy.nvim",
-		optional = true,
-		opts = {
-			right = {
-				{
-					title = "Iron",
-					ft = "iron",
-					size = { width = 0.4 },
-					filter = function(buf)
-						return require("iron.lowlevel").repl_exists({ bufnr = buf })
-					end,
-				},
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
 			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false win.position=left<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle win.position=bottom<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+			{
+				"[q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").prev({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cprev)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
+					end
+				end,
+				desc = "Previous Trouble/Quickfix Item",
+			},
+			{
+				"]q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").next({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cnext)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
+					end
+				end,
+				desc = "Next Trouble/Quickfix Item",
+			},
+		},
+		init = function()
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
+				},
+				diagnostics = {
+					underline = true,
+					update_in_insert = false,
+					virtual_text = false,
+					severity_sort = true,
+				},
+				virtual_lines = {
+					current_line = true,
+				},
+			})
+		end,
+		opts = {
+			open_no_results = true,
 		},
 	},
 }
