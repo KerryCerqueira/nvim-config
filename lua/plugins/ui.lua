@@ -819,7 +819,7 @@ return {
 			--TODO: Exchnage file finders for frecency ones
 		end,
 	},
----@module "neominimap.config.meta"
+	---@module "neominimap.config.meta"
 	{
 		"Isrothy/neominimap.nvim",
 		lazy = false,
@@ -850,14 +850,7 @@ return {
 			vim.o.foldlevel = 99
 			vim.o.foldlevelstart = 99
 			vim.o.foldenable = true
-			vim.api.nvim_create_autocmd(
-				"CursorHold",
-				{
-					callback = function()
-						require('ufo').peekFoldedLinesUnderCursor()
-					end,
-				}
-			)
+			vim.o.updatetime = 800
 		end,
 		opts = {
 			provider_selector = function(bufnr, filetype, buftype)
@@ -896,5 +889,17 @@ return {
 				return newVirtText
 			end
 		},
+		config = function(_, opts)
+			local ufo = require("ufo")
+			ufo.setup(opts)
+			vim.api.nvim_create_autocmd(
+				"CursorHold",
+				{
+					callback = function()
+						ufo.peekFoldedLinesUnderCursor()
+					end,
+				}
+			)
+		end,
 	},
 }
