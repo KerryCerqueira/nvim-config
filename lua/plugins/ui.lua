@@ -853,6 +853,26 @@ return {
 			vim.o.updatetime = 800
 		end,
 		opts = {
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = { query = "@function.outer", desc = "treesitter function", },
+						["if"] = { query = "@function.inner", desc = "treesitter function", },
+						["ac"] = { query = "@class.outer", desc = "treesitter class",},
+						["ic"] = { query = "@class.inner", desc = "treesitter class", },
+						["iS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
+						["aS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
+						["iP"] = { query = "@parameter.inner", desc = "treesitter parameter" },
+						["aP"] = { query = "@parameter.outer", desc = "treesitter parameter" },
+					},
+					selection_modes = {
+						['@function.outer'] = 'V',
+						['@class.outer'] = 'V',
+					},
+				},
+			},
 			provider_selector = function(bufnr, filetype, buftype)
 				return {'treesitter', 'indent'}
 			end,

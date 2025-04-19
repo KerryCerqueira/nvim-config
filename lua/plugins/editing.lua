@@ -1,18 +1,5 @@
 return {
 	{
-		'echasnovski/mini.ai',
-		event = "BufEnter",
-		opts = {},
-		version = false
-	},
-	-- TODO: Decide on keymaps
-	{
-		'echasnovski/mini.align',
-		event = "BufEnter",
-		opts = {},
-		version = false
-	},
-	{
 		'echasnovski/mini.bracketed',
 		event = "BufEnter",
 		opts = {},
@@ -31,27 +18,6 @@ return {
 				return module.calculate_commentstring() or vim.bo.commentstring
 			end,
 		},
-	},
-	{
-		'echasnovski/mini.jump',
-		event = "BufEnter",
-		opts = {},
-		version = false
-	},
-	{
-		'echasnovski/mini.pairs',
-		event = "BufEnter",
-		version = false,
-		keys = {
-			{
-				"<Leader>tp",
-				function()
-					vim.g.minipairs_disable = not vim.g.minipairs_disable
-				end,
-				desc = "Toggle auto pairs",
-			},
-		},
-		opts = {},
 	},
 	{
 		"echasnovski/mini.splitjoin",
@@ -80,6 +46,17 @@ return {
 	{
 		'echasnovski/mini.trailspace',
 		event = "BufEnter",
+		keys = {
+			{
+				"<leader>gt",
+				function()
+					require("mini.trailspace").trim()
+					require("mini.trailspace").trim_last_lines()
+					vim.notify("Trimmed whitespace.")
+				end,
+				desc = "Trim whitespace.",
+			},
+		},
 		opts = {},
 		version = false
 	},
@@ -105,12 +82,33 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = '<CR>',
-					scope_incremental = '<CR>',
-					node_incremental = '<TAB>',
-					node_decremental = '<S-TAB>',
+					init_selection = '<Space>',
+					scope_incremental = '<TAB>',
+					node_incremental = '<Space>',
+					node_decremental = '<C-Space>',
 				},
 			},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = { query = "@function.outer", desc = "treesitter function", },
+						["if"] = { query = "@function.inner", desc = "treesitter function", },
+						["ac"] = { query = "@class.outer", desc = "treesitter class",},
+						["ic"] = { query = "@class.inner", desc = "treesitter class", },
+						["iS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
+						["aS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
+						["iP"] = { query = "@parameter.inner", desc = "treesitter parameter" },
+						["aP"] = { query = "@parameter.outer", desc = "treesitter parameter" },
+					},
+					selection_modes = {
+						['@function.outer'] = 'V',
+						['@class.outer'] = 'V',
+					},
+				},
+			},
+
 		},
 		init = function()
 			vim.opt.foldmethod = "expr"
