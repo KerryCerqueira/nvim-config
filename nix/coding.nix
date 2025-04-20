@@ -13,11 +13,7 @@ in
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
-			blink-cmp-copilot
 			colorful-menu-nvim
-			copilot-cmp
-			CopilotChat-nvim
-			copilot-lua
 			friendly-snippets
 			iron-nvim
 			neoconf-nvim

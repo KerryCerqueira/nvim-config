@@ -12,7 +12,6 @@ in
 		plugins = with pkgs.vimPlugins; [
 			bufferline-nvim
 			catppuccin-nvim
-			copilot-lualine
 			edgy-nvim
 			image-nvim
 			lualine-nvim

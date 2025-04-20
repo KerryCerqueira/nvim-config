@@ -466,7 +466,6 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"arkav/lualine-lsp-progress",
-			"AndreM222/copilot-lualine",
 		},
 		event = "VeryLazy",
 		init = function()
@@ -512,7 +511,6 @@ return {
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 					},
 					lualine_x = {
-						"copilot",
 						"lsp_progress",
 						{
 							"diff",

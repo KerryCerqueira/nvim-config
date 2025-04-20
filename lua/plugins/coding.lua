@@ -11,7 +11,6 @@ return {
 				"danymat/neogen",
 				opts = {snippet_engine = "nvim"},
 			},
-			{ "giuxtaposition/blink-cmp-copilot", },
 			{ "xzbdmw/colorful-menu.nvim", },
 		},
 		version = '*',
