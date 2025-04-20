@@ -1,15 +1,17 @@
-{ luaModules }: { pkgs, config, ... }:
+{ luaModules }: { pkgs, lib, config, ... }:
 let
 	uiLuaModule = luaModules + /plugins/ui.lua;
 in
 {
-	imports = [ ./neominimap.nix ];
 	xdg.configFile."nvim/lua/plugins/ui.lua".source = uiLuaModule;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			manix
 		];
-		plugins = with pkgs.vimPlugins; [
+		plugins = let
+			extraPkgs = (import ./extra-pkgs.nix { inherit pkgs lib; });
+		in
+			with pkgs.vimPlugins; [
 			bufferline-nvim
 			catppuccin-nvim
 			edgy-nvim
@@ -31,6 +33,9 @@ in
 			telescope-undo-nvim
 			telescope-zf-native-nvim
 			which-key-nvim
-		];
+		] ++ (with extraPkgs; [
+			neominimap-nvim
+			tiny-glimmer-nvim
+		]);
 	};
 }
