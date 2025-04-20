@@ -34,7 +34,6 @@ return {
 						settings = {
 							lineLength = 79,
 							format = {
-								indentStyle = "tab",
 								docstringCodeFormat = true,
 							},
 						},
