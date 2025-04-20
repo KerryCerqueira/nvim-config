@@ -64,7 +64,10 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "RRethy/nvim-treesitter-endwise" },
+		dependencies = {
+			"RRethy/nvim-treesitter-endwise",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		build = function()
 			require("nvim-treesitter.install").update({ with_sync = true })()
 		end,

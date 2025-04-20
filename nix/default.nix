@@ -1,7 +1,9 @@
-{ luaModules }: { pkgs, config, ... }:
+{ flakeRoot }: { pkgs, config, ... }:
 let
 	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
+	compatModules = import ./nixcompat;
+	luaModules = flakeRoot + /lua;
 in {
 	imports = [
 		(import ./lang { inherit luaModules; })
@@ -22,46 +24,43 @@ in {
 		plugins = with pkgs.vimPlugins; [
 			lazy-nvim
 		];
-		extraLuaConfig = # lua
+		extraLuaConfig = builtins.readFile (flakeRoot + /init.lua);
+	};
+	xdg.configFile = {
+		"nvim/lua/options.lua".source = luaModules + /options.lua;
+		"nvim/lua/autocommands.lua".source = luaModules + /autocommands.lua;
+		"nvim/lua/keymaps.lua".source = luaModules + /keymaps.lua;
+		"nvim/lua/lazy-setup.lua".text = #lua
 			''
-			vim.g.mapleader = " "
-			vim.g.maplocalleader = ","
-			require("lazy").setup({
-				spec = {
-					{ import = "plugins" },
-					{ import = "lang" },
-					{
-						"folke/lazydev.nvim",
-						optional = true,
-						opts = {
-							library = { "${nvimPackDir}/pack/myNeovimPackages/start" },
-						},
-					},
-					{
-						{ "williamboman/mason-lspconfig.nvim", enabled = false },
-						{ "williamboman/mason.nvim", enabled = false },
-					},
-					{
-						{
-							"nvim-treesitter/nvim-treesitter",
-							opts = {
-								auto_install = false,
-								ensure_installed = {},
+				return {
+					setup = function()
+						require("lazy").setup({
+							spec = {
+								{ import = "plugins" },
+								{ import = "lang" },
+								{ import = "nixcompat" },
+								{
+									"folke/lazydev.nvim",
+									optional = true,
+									opts = {
+										library = { "${nvimPackDir}/pack/myNeovimPackages/start" },
+									},
+								},
 							},
-							build = nil
-						},
-					},
-				},
-				dev = {
-					path = "${nvimPackDir}/pack/myNeovimPackages/start",
-					patterns = {""},
-				},
-				performance = {
-					reset_packpath = false,
-					rtp = { reset = false, },
-				},
-				install = { missing = false, },
-			})
+							dev = {
+								path = "${nvimPackDir}/pack/myNeovimPackages/start",
+								patterns = {""},
+							},
+							performance = {
+								reset_packpath = false,
+								rtp = { reset = false, },
+							},
+							install = { missing = false, },
+						})
+					end,
+				}
 			'';
+		"nvim/lua/nixcompat/mason.lua".text = compatModules.mason;
+		"nvim/lua/nixcompat/treesitter.lua".text = compatModules.treesitter;
 	};
 }
