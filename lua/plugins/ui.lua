@@ -458,9 +458,29 @@ return {
 			mappings = {
 				windows = true,
 			},
-			autocommands = { relnum_in_visual_mode = true, },
+			autocommands = {
+				basic = false,
+				relnum_in_visual_mode = true,
+			},
 		},
 		version = false
+	},
+	{
+		"rachartier/tiny-glimmer.nvim",
+		event = "VeryLazy",
+		priority = 10,
+		opts = {
+			enabled = true,
+			disable_warnings = true,
+			overwrite = {
+				auto_map = true,
+				search = { enabled = true, },
+				paste = { enabled = true, },
+				undo = { enabled = true, },
+				redo = { enabled = true, },
+				presets = { pulsar = { enabled = true, }, },
+			},
+		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
