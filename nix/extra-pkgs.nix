@@ -4,8 +4,7 @@
 		tag = "v3.11.1";
 		version  = lib.removePrefix "v" tag;
 		hash = "sha256-5TVz3ebhnc7t3bGnBu0nivSb4TVVWuupI8gxfP6FG20=";
-	in
-		pkgs.vimUtils.buildVimPlugin {
+	in pkgs.vimUtils.buildVimPlugin {
 			pname = "neominimap.nvim";
 			inherit version;
 			src = pkgs.fetchFromGitHub {
@@ -16,19 +15,32 @@
 			};
 		};
 	tiny-glimmer-nvim = let
-		version = "0.0.1";
+		commitDate = "2025-03-07";
+		version = "unstable-" + commitDate;
 		rev = "70234ad3d193a187c81cb16007100b790c9801fc";
 		hash = "sha256-X/uShlNIROhcqaOOsmu2mkMuvUcNgwp010HKF0KeTdk=";
-	in
-		pkgs.vimUtils.buildVimPlugin {
+	in pkgs.vimUtils.buildVimPlugin {
 			pname = "tiny-glimmer.nvim";
 			inherit version;
 			src = pkgs.fetchFromGitHub {
 				owner = "rachartier";
 				repo = "tiny-glimmer.nvim";
-				inherit rev;
-				inherit hash;
+				inherit rev hash;
 			};
 			nvimSkipModules = [ "test" ];
+		};
+	visual-whitespace-nvim = let
+		commitDate = "2025-04-14";
+		version = "unstable-" + commitDate;
+		rev = "99898e2c26d06c9109820236228c7ce6df86e51c";
+		hash = "sha256-ofiBFp3rZnGpkaBy4WG8YLcLb+EQFlRcQv7eF3adMZM=";
+	in pkgs.vimUtils.buildVimPlugin {
+			pname = "visual-whitespace.nvim";
+			inherit version;
+			src = pkgs.fetchFromGitHub {
+				owner = "mcauley-penney";
+				repo = "visual-whitespace.nvim";
+				inherit rev hash;
+			};
 		};
 }
