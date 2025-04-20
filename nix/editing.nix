@@ -18,6 +18,7 @@ in
 			nvim-treesitter-textobjects
 			nvim-treesitter-textsubjects
 			nvim-ts-context-commentstring
+			substitute-nvim
 		];
 	};
 }
