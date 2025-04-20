@@ -82,10 +82,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = '<Space>',
+					init_selection = '<C-Space>',
 					scope_incremental = '<TAB>',
-					node_incremental = '<Space>',
-					node_decremental = '<C-Space>',
+					node_incremental = '<C-Space>',
+					node_decremental = '<Space>',
 				},
 			},
 			textobjects = {
