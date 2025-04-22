@@ -1,5 +1,5 @@
 {
-	description = "Kerry Cerqueira's neovim confuguration";
+	description = "Kerry Cerqueira's neovim configuration";
 	outputs = { ... }:
 		{
 			homeManagerModules.nvim-config = { ... }:
