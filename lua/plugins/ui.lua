@@ -483,116 +483,6 @@ return {
 		},
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"arkav/lualine-lsp-progress",
-		},
-		event = "VeryLazy",
-		init = function()
-			vim.g.lualine_laststatus = vim.o.laststatus
-			if vim.fn.argc(-1) > 0 then
-				-- set an empty statusline till lualine loads
-				vim.o.statusline = " "
-			else
-				-- hide the statusline on the starter page
-				vim.o.laststatus = 0
-			end
-		end,
-		opts = function()
-			local lualine_require = require("lualine_require")
-			lualine_require.require = require
-
-
-			vim.o.laststatus = vim.g.lualine_laststatus
-
-			return {
-				options = {
-					section_separators = { left = '', right = '' },
-					component_separators = { left = '', right = '' },
-					theme = "auto",
-					globalstatus = true,
-					disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
-				},
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", },
-
-					lualine_c = {
-						"filename",
-						{
-							"diagnostics",
-							symbols = {
-								error = " ",
-								warn = " ",
-								info = " ",
-								hint = " ",
-							},
-						},
-						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-					},
-					lualine_x = {
-						"lsp_progress",
-						{
-							"diff",
-							symbols = {
-								added = " ",
-								modified = " ",
-								removed = " ",
-							},
-							source = function()
-								local gitsigns = vim.b.gitsigns_status_dict
-								if gitsigns then
-									return {
-										added = gitsigns.added,
-										modified = gitsigns.changed,
-										removed = gitsigns.removed,
-									}
-								end
-							end,
-						},
-					},
-					lualine_y = {
-						{ "progress", separator = " ", padding = { left = 1, right = 0 } },
-						{ "location", padding = { left = 0, right = 1 } },
-					},
-					lualine_z = {
-						function()
-							return " " .. os.date("%R")
-						end,
-					},
-				},
-				extensions = {"lazy", "quickfix", "trouble", "fzf" },
-			}
-		end,
-	},
-	{
-		"3rd/image.nvim",
-		event = {
-			"BufReadPre *.png",
-			"BufReadPre *.jpg",
-			"BufReadPre *.jpeg",
-			"BufReadPre *.gif",
-			"BufReadPre *.webp",
-			"BufReadPre *.avif"
-		},
-		ft = { "markdown", "vimwiki", "norg" },
-		opts = {}
-	},
-	{
-		"catppuccin/nvim",
-		lazy = false,
-		name = "catppuccin",
-		priority = 1000,
-		opts = {
-			transparent_background = true,
-			term_colors = true,
-		},
-		config = function(_, opts)
-			require("catppuccin").setup(opts)
-			vim.cmd.colorscheme("catppuccin-mocha")
-		end,
-	},
-	{
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
 		keys = {
@@ -655,9 +545,9 @@ return {
 				diagnostics_indicator = function(_, _, diag)
 					local icons = {
 						Error = " ",
-						Warn  = " ",
-						Hint  = " ",
-						Info  = " ",
+						Warn = " ",
+						Hint = " ",
+						Info = " ",
 					}
 					local ret = (diag.error and icons.Error .. diag.error .. " " or "")
 					.. (diag.warning and icons.Warn .. diag.warning or "")
@@ -675,6 +565,123 @@ return {
 					end)
 				end,
 			})
+		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		init = function()
+			vim.g.lualine_laststatus = vim.o.laststatus
+			if vim.fn.argc(-1) > 0 then
+				-- set an empty statusline till lualine loads
+				vim.o.statusline = " "
+			else
+				-- hide the statusline on the starter page
+				vim.o.laststatus = 0
+			end
+		end,
+		opts = {
+			options = {
+				section_separators = { left = '', right = '' },
+				component_separators = { left = '', right = '' },
+				theme = "auto",
+				globalstatus = true,
+				disabled_filetypes = {
+					statusline = { "dashboard", "alpha", "starter" },
+					winbar = { "neominimap", "trouble", "neo-tree"},
+				},
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", },
+
+				lualine_c = {
+					{
+						"diagnostics",
+						symbols = {
+							error = " ",
+							warn = " ",
+							info = " ",
+							hint = " ",
+						},
+					},
+				},
+				lualine_x = {
+					"lsp_progress",
+					{
+						"diff",
+						symbols = {
+							added = " ",
+							modified = " ",
+							removed = " ",
+						},
+						source = function()
+							local gitsigns = vim.b.gitsigns_status_dict
+							if gitsigns then
+								return {
+									added = gitsigns.added,
+									modified = gitsigns.changed,
+									removed = gitsigns.removed,
+								}
+							end
+						end,
+					},
+				},
+				lualine_y = {
+					{ "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+					{ "location", padding = { left = 0, right = 1 } },
+				},
+				lualine_z = {
+					function()
+						return " " .. os.date("%R")
+					end,
+				},
+			},
+			winbar = {
+				lualine_a = {
+					"filename",
+				},
+				lualine_y = {
+					{ "filetype", separator = "", },
+					{ "filesize", separator = "", }, "encoding",
+				},
+			},
+			inactive_winbar = {
+				lualine_b = {
+					"filename",
+				},
+				lualine_x = {
+					{ "filetype", separator = "", },
+					{ "filesize", separator = "", }, "encoding",
+				},
+			},
+			extensions = { "lazy", "quickfix", "trouble", "fzf" },
+		}
+	},
+	{
+		"3rd/image.nvim",
+		event = {
+			"BufReadPre *.png",
+			"BufReadPre *.jpg",
+			"BufReadPre *.jpeg",
+			"BufReadPre *.gif",
+			"BufReadPre *.webp",
+			"BufReadPre *.avif"
+		},
+		ft = { "markdown", "vimwiki", "norg" },
+		opts = {}
+	},
+	{
+		"catppuccin/nvim",
+		lazy = false,
+		name = "catppuccin",
+		priority = 1000,
+		opts = {
+			transparent_background = true,
+			term_colors = true,
+		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 	{ -- telescope
