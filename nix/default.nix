@@ -2,15 +2,18 @@
 let
 	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
-	compatModules = import ./nixcompat { inherit pkgs; };
+	compatModules = import ./nixcompat { inherit pkgs config; };
 	luaModules = flakeRoot + /lua;
+	moduleArgs = {
+		inherit compatModules luaModules;
+	};
 in {
 	imports = [
-		(import ./lang { inherit luaModules; })
-		(import ./ui.nix { inherit luaModules; })
-		(import ./coding.nix { inherit luaModules; })
-		(import ./editing.nix { inherit luaModules; })
-		(import ./git.nix { inherit luaModules; })
+		(import ./lang moduleArgs)
+		(import ./ui.nix moduleArgs)
+		(import ./coding.nix moduleArgs)
+		(import ./editing.nix moduleArgs)
+		(import ./git.nix moduleArgs)
 	];
 	programs.neovim = {
 		enable = true;

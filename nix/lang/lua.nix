@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, ...}:
+{ luaModules, ... }: { pkgs, ...}:
 let
 	luaLuaModule = luaModules + /lang/lua.lua;
 in {

@@ -1,7 +1,6 @@
-{ luaModules }: { pkgs, lib, config, ... }:
+{ luaModules, compatModules, ... }: { pkgs, lib, config, ... }:
 let
 	uiLuaModule = luaModules + /plugins/ui.lua;
-	compatModules = import ./nixcompat { inherit  pkgs; };
 in
 	{
 	xdg.configFile = {

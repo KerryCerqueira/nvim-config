@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, ...}:
+{ luaModules, ... }: { pkgs, ...}:
 let
 	texLuaModule = luaModules + /lang/tex.lua;
 in {

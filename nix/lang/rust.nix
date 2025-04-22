@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, ...}:
+{ luaModules, ... }: { pkgs, ...}:
 let
 	rustLuaModule = luaModules + /lang/rust.lua;
 in {

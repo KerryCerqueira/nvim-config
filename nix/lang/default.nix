@@ -1,16 +1,16 @@
-{ luaModules }: { ... }:
+{ luaModules, compatModules }@modules: { ... }:
 {
 	imports = [
-		(import ./hyprlang.nix {inherit luaModules;})
-		(import ./json.nix {inherit luaModules;})
-		(import ./lua.nix {inherit luaModules;})
-		(import ./markdown.nix {inherit luaModules;})
-		(import ./nix.nix {inherit luaModules;})
-		(import ./python.nix {inherit luaModules;})
-		(import ./rust.nix {inherit luaModules;})
-		(import ./shell.nix {inherit luaModules;})
-		(import ./tex.nix {inherit luaModules;})
-		(import ./toml.nix {inherit luaModules;})
-		(import ./yaml.nix {inherit luaModules;})
+		(import ./hyprlang.nix modules)
+		(import ./json.nix modules)
+		(import ./lua.nix modules)
+		(import ./markdown.nix modules)
+		(import ./nix.nix modules)
+		(import ./python.nix modules)
+		(import ./rust.nix modules)
+		(import ./shell.nix modules)
+		(import ./tex.nix modules)
+		(import ./toml.nix modules)
+		(import ./yaml.nix modules)
 	];
 }

@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, ...}:
+{ luaModules, ... }: { pkgs, ...}:
 let
 	jsonLuaModule = luaModules + /lang/json.lua;
 in {

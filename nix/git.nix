@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, config, ... }:
+{ luaModules, ... }: { pkgs, config, ... }:
 let
 	gitLuaModule = luaModules + /plugins/git.lua;
 in

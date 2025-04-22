@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, config, ... }:
+{ luaModules, ... }: { pkgs, config, ... }:
 let
 	codingLuaModule = luaModules + /plugins/coding.lua;
 in

@@ -1,4 +1,4 @@
-{ luaModules }: { pkgs, ...}:
+{ luaModules, ... }: { pkgs, ...}:
 let
 	hyprlangLuaModule = luaModules + /lang/hyprlang.lua;
 in {
