@@ -2,7 +2,7 @@
 let
 	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
-	compatModules = import ./nixcompat;
+	compatModules = import ./nixcompat { inherit pkgs; };
 	luaModules = flakeRoot + /lua;
 in {
 	imports = [

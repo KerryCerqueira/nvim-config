@@ -1,9 +1,13 @@
 { luaModules }: { pkgs, lib, config, ... }:
 let
 	uiLuaModule = luaModules + /plugins/ui.lua;
+	compatModules = import ./nixcompat { inherit  pkgs; };
 in
 	{
-	xdg.configFile."nvim/lua/plugins/ui.lua".source = uiLuaModule;
+	xdg.configFile = {
+		"nvim/lua/plugins/ui.lua".source = uiLuaModule;
+		"nvim/lua/nixcompat/catppuccin.lua".text = compatModules.catppuccin;
+	};
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			manix

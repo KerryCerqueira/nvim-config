@@ -580,14 +580,17 @@ return {
 	},
 	{
 		"catppuccin/nvim",
-		lazy = true,
+		lazy = false,
 		name = "catppuccin",
 		priority = 1000,
-		init = function() vim.cmd.colorscheme("catppuccin-mocha") end,
 		opts = {
 			transparent_background = true,
 			term_colors = true,
 		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd.colorscheme("catppuccin-mocha")
+		end,
 	},
 	{
 		"akinsho/bufferline.nvim",
