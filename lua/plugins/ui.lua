@@ -863,6 +863,11 @@ return {
 				auto_enable = true,
 				layout = "split",
 				close_if_last_window = true,
+				exclude_filetypes = {
+					"help",
+					"bigfile",
+					"NeogitStatus",
+				},
 			}
 		end,
 	},
