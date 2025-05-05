@@ -12,8 +12,9 @@ in {
 			texlab
 		];
 		plugins = with pkgs.vimPlugins; [
-			nvim-treesitter.withAllGrammars
 			vimtex
+			img-clip-nvim
+			nvim-treesitter.withAllGrammars
 			nvim-lint
 		];
 	};

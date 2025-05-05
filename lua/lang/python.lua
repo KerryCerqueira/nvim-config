@@ -1,15 +1,5 @@
 return {
 	{
-		"Vigemus/iron.nvim",
-		opts = {
-			config = {
-				repl_definition = {
-					python = require("iron.fts.python").ipython,
-				},
-			},
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		opts = {
 			servers = {

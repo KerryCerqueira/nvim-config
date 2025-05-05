@@ -6,6 +6,7 @@
 		(import ./lua.nix modules)
 		(import ./markdown.nix modules)
 		(import ./nix.nix modules)
+		(import ./ipynb.nix modules)
 		(import ./python.nix modules)
 		(import ./rust.nix modules)
 		(import ./shell.nix modules)

@@ -2,8 +2,12 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "folke/snacks.nvim" },
-		opts = {},
-		ft = { "markdown", "norg", "rmd", "org" },
+		opts = {
+			preset  = "obsidian",
+			file_types = { "markdown", "norg", "rmd", "org", "quarto" },
+			completions = { lsp = { enabled = true } },
+		},
+		ft = { "markdown", "norg", "rmd", "org", "quarto" },
 		config = function(_, opts)
 			require("render-markdown").setup(opts)
 			require("snacks")

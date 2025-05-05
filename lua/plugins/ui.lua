@@ -33,7 +33,8 @@ return {
 				{ "\\t", group = "treesitter" },
 				{ "]", group = "iteration" },
 				{ "[", group = "reverse iteration" },
-				{ "<Localleader>l", group = "vimtex" },
+				{ "<localleader>l", group = "vimtex" },
+				{ "<localleader>m", group = "molten" },
 			},
 		},
 		init = function()
@@ -338,7 +339,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
-			{"3rd/image.nvim", opts = {}},
+			"3rd/image.nvim",
 		},
 		lazy = false,
 		cmd = "Neotree",

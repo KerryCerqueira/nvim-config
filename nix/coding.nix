@@ -15,7 +15,6 @@ in
 			blink-cmp
 			colorful-menu-nvim
 			friendly-snippets
-			iron-nvim
 			neoconf-nvim
 			neogen
 			nvim-lspconfig

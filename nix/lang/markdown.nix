@@ -13,6 +13,8 @@ in {
 		plugins = with pkgs.vimPlugins; [
 			snacks-nvim
 			render-markdown-nvim
+			img-clip-nvim
+			nabla-nvim
 			nvim-lint
 			nvim-treesitter.withAllGrammars
 			conform-nvim

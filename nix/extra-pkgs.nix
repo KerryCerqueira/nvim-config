@@ -1,10 +1,5 @@
 {pkgs, lib, ...}:
 {
-  # "rev": "0c0709557a5347ff7937c01b7ecab714330d3ddd",
-  # "date": "2025-04-10T01:40:01-04:00",
-  # "path": "/nix/store/q2a07v96xlyvca85nwa4vgijgby1rlng-neominimap.nvim",
-  # "sha256": "0xkdpv7c923vyq0s0y1hzrbsw44jwxpibcrzx671is4is2ffj0z6",
-  # "hash": "",
 	neominimap-nvim = let
 		tag = "v3.11.1";
 		version  = lib.removePrefix "v" tag;

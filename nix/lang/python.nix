@@ -10,7 +10,6 @@ in {
 			ruff
 		];
 		plugins = with pkgs.vimPlugins; [
-			iron-nvim
 			neogen
 		];
 	};
