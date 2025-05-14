@@ -90,6 +90,8 @@ return {
 			vim.g.molten_image_provider = "image.nvim"
 			vim.g.molten_auto_open_output = true
 			vim.g.molten_auto_open_html_in_browser = true
+			vim.g.molten_wrap_output = true
+			vim.g.molten_output_show_more = true
 			vim.g.molten_tick_rate = 200
 			vim.api.nvim_create_autocmd(
 				"User",
@@ -203,13 +205,18 @@ return {
 					pattern = "MoltenDeinitPost",
 					group = vim.api.nvim_create_augroup("MoltenDeInit", {}),
 					callback = function(ev)
-						vim.keymap.del("n", "<localleader>e", { buffer = ev.buf })
 						vim.keymap.del("n", "<localleader>rr", { buffer = ev.buf })
-						vim.keymap.del("n", "<localleader>rc", { buffer = ev.buf })
+						vim.keymap.del("n", "<localleader>ce", { buffer = ev.buf })
 						vim.keymap.del("v", "<localleader>r", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>cd", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>ch", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>cs", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>ms", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>mp", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>mb", { buffer = ev.buf })
+						vim.keymap.del("v", "<localleader>mh", { buffer = ev.buf })
+						vim.keymap.del("n", "<localleader>rc", { buffer = ev.buf })
 						vim.keymap.del("n", "<localleader>rd", { buffer = ev.buf })
-						vim.keymap.del("n", "<localleader>oh", { buffer = ev.buf })
-						vim.keymap.del("n", "<localleader>os", { buffer = ev.buf })
 					end,
 				}
 			)
