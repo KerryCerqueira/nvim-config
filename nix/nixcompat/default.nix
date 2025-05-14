@@ -2,8 +2,7 @@
 let
 	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
 	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
-in
-{
+in {
 	mason = builtins.readFile ./lua/mason.lua;
 	treesitter = builtins.readFile ./lua/treesitter.lua;
 	catppuccin = # lua
@@ -14,7 +13,7 @@ in
 			dir = "${pkgs.vimPlugins.catppuccin-nvim}",
 		}
 		'';
-		neodev = # lua
+	neodev = # lua
 		''
 		return {
 			"folke/lazydev.nvim",

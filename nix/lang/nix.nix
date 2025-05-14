@@ -4,7 +4,6 @@ let
 in {
 	xdg.configFile = {
 		"nvim/lua/lang/nix.lua".source = nixLuaModule;
-		"nvim/lua/nixcompat/neodev.lua".text = compatModules.neodev;
 	};
 	programs.neovim = {
 		extraPackages = with pkgs; [

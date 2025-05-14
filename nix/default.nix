@@ -42,13 +42,7 @@ in {
 								{ import = "plugins" },
 								{ import = "lang" },
 								{ import = "nixcompat" },
-								{
-									"folke/lazydev.nvim",
-									optional = true,
-									opts = {
-										library = { "${nvimPackDir}/pack/myNeovimPackages/start" },
-									},
-								},
+								{ import = "extra" },
 							},
 							dev = {
 								path = "${nvimPackDir}/pack/myNeovimPackages/start",
