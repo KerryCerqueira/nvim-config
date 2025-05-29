@@ -14,6 +14,7 @@ in {
 		(import ./coding.nix moduleArgs)
 		(import ./editing.nix moduleArgs)
 		(import ./git.nix moduleArgs)
+		(import ./ai.nix moduleArgs)
 	];
 	programs.neovim = {
 		enable = true;
