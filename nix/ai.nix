@@ -8,6 +8,7 @@ in
 		plugins = with pkgs.vimPlugins; [
 			avante-nvim
 			blink-cmp-avante
+			blink-copilot
 			copilot-lua
 			copilot-lualine
 			dressing-nvim
