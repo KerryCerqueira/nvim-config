@@ -13,6 +13,7 @@ in
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
+			blink-cmp-git
 			colorful-menu-nvim
 			friendly-snippets
 			neoconf-nvim
