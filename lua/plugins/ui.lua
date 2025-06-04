@@ -853,11 +853,11 @@ return {
 		"Isrothy/neominimap.nvim",
 		lazy = false,
 		keys = {
-			{ "\\mm", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
-			{ "\\mw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
-			{ "\\mt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
-			{ "\\mb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
-			{ "<leader>mf", "<cmd>Neominimap toggleFocus<cr>", desc = "Switch focus on minimap" },
+			{ "\\mm", "<cmd>Neominimap Toggle<cr>", desc = "Toggle global minimap" },
+			{ "\\mw", "<cmd>Neominimap WinToggle<cr>", desc = "Toggle minimap for current window" },
+			{ "\\mt", "<cmd>Neominimap TabToggle<cr>", desc = "Toggle minimap for current tab" },
+			{ "\\mb", "<cmd>Neominimap BufToggle<cr>", desc = "Toggle minimap for current buffer" },
+			{ "<leader>mf", "<cmd>Neominimap ToggleFocus<cr>", desc = "Switch focus on minimap" },
 		},
 		init = function()
 			vim.g.neominimap = {
@@ -867,6 +867,7 @@ return {
 				exclude_filetypes = {
 					"help",
 					"bigfile",
+					"neo-tree",
 					"NeogitStatus",
 				},
 			}
