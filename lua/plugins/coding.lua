@@ -2,32 +2,27 @@ return {
 	{
 		'saghen/blink.cmp',
 		dependencies = {
-			-- {
-			-- 	'Kaiser-Yang/blink-cmp-git',
-			-- 	dependencies = { 'nvim-lua/plenary.nvim' }
-			-- },
+			{ 'Kaiser-Yang/blink-cmp-git', },
 			{ "rafamadriz/friendly-snippets", },
 			{
 				"danymat/neogen",
-				opts = {snippet_engine = "nvim"},
+				opts = { snippet_engine = "nvim" },
 			},
 			{ "xzbdmw/colorful-menu.nvim", },
+			{ "fang2hou/blink-copilot", },
 		},
-		version = '*',
-		---@module 'blink.cmp'
-		---@type blink.cmp.Config
 		opts = {
 			keymap = {
 				preset = "enter",
 			},
 			cmdline = {
 				keymap = {
-					['<CR>'] = { "accept", "fallback" },
+					["<CR>"] = { "accept", "fallback" },
 				},
 				completion = {
 					menu = {
 						auto_show = function(ctx)
-							return vim.fn.getcmdtype() == ':'
+							return vim.fn.getcmdtype() == ":"
 						end,
 					},
 					list = {
@@ -35,28 +30,41 @@ return {
 							preselect = false,
 						},
 					},
-				},
+			},
 			},
 			appearance = { nerd_font_variant = "normal" },
 			sources = {
-				-- add git source
-				default = { 'lsp', 'snippets', 'path', },
+				default = {
+					"copilot",
+					"lsp",
+					"snippets",
+					"path",
+					"git",
+				},
 				providers = {
 					lsp = {
 						timeout_ms = 2000,
 					},
-					-- git = {
-					-- 	score_offset = 100,
-					-- 	name = 'Git',
-					-- 	module = 'blink-cmp-git',
-					-- 	enabled = true,
-					-- 	should_show_items = function()
-					-- 		return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
-					-- 	end,
-					-- 	--- @module 'blink-cmp-git'
-					-- 	--- @type blink-cmp-git.Options
-					-- 	opts = {},
-					-- },
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						score_offset = 100,
+						async = true,
+					},
+					git = {
+						score_offset = 100,
+						enabled = function()
+							return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
+						end,
+						name = "git",
+						module = "blink-cmp-git",
+						opts = {
+							commit = {},
+							git_centers = {
+								github = {},
+							},
+						},
+					},
 				},
 			},
 			signature = {
@@ -79,9 +87,9 @@ return {
 					auto_show = true,
 					draw = {
 						columns = {
-							{ 'label', 'label_description', gap = 1 },
+							{ "label", "label_description", gap = 1 },
 							{ "source_name" },
-							{ 'kind_icon' },
+							{ "kind_icon" },
 						},
 						components = {
 							label = {
@@ -249,5 +257,40 @@ return {
 		opts = {
 			open_no_results = true,
 		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		opts = {
+			panel = {
+				enabled = false,
+			},
+			filetypes = {
+				markdown = true,
+			},
+			suggestion = {
+				enabled = false,
+			},
+		},
+	},
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" },
+			{ "nvim-lua/plenary.nvim" },
+		},
+		opts = function()
+			local user = vim.env.USER or "User"
+			user = user:sub(1, 1):upper() .. user:sub(2)
+			return {
+				auto_insert_mode = true,
+				question_header = "  " .. user .. " ",
+				answer_header = "  Copilot ",
+				window = {
+					width = 0.4,
+				},
+			}
+		end,
 	},
 }

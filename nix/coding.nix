@@ -4,12 +4,13 @@ let
 in
 {
 	xdg.configFile."nvim/lua/plugins/coding.lua".source = codingLuaModule;
+	home.packages = with pkgs; [
+		gh
+	];
 	programs.neovim = {
-		extraLuaPackages = ps: [
-			ps.tiktoken_core
-		];
 		extraPackages = with pkgs; [
-			lynx
+			git
+			curl
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
