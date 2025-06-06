@@ -1,9 +1,9 @@
 { luaModules, ... }: { pkgs, lib, config, ... }:
 let
-	editingLuaModule = luaModules + /plugins/editing.lua;
+	aiLuaModule = luaModules + /plugins/ai.lua;
 in
 	{
-	xdg.configFile."nvim/lua/plugins/editing.lua".source = editingLuaModule;
+	xdg.configFile."nvim/lua/plugins/ai.lua".source = aiLuaModule;
 	programs.neovim = {
 		extraLuaPackages = ps: [
 			ps.tiktoken_core
@@ -12,9 +12,9 @@ in
 			lynx
 		];
 		plugins = with pkgs.vimPlugins; [
-			avante-nvim
-			blink-cmp-avante
 			blink-copilot
+			codecompanion-nvim
+			codecompanion-history-nvim
 			CopilotChat-nvim
 			copilot-lua
 			copilot-lualine

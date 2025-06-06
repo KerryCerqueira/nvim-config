@@ -7,7 +7,14 @@ return {
 			file_types = { "markdown", "norg", "rmd", "org", "quarto" },
 			completions = { lsp = { enabled = true } },
 		},
-		ft = { "markdown", "norg", "rmd", "org", "quarto" },
+		ft = {
+			"markdown",
+			"norg",
+			"rmd",
+			"org",
+			"quarto",
+			"codecompanion",
+		},
 		config = function(_, opts)
 			require("render-markdown").setup(opts)
 			require("snacks")

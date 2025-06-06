@@ -141,9 +141,12 @@ return {
 			},
 			right = {
 				{
-					ft = "copilot-chat",
-					title = "Copilot Chat",
+					ft = "codecompanion",
+					title = "AI chat",
 					size = { width = 100 },
+					filter = function(_, win)
+						return vim.api.nvim_win_get_config(win).relative == ""
+					end,
 				},
 			},
 			exit_when_last = true,
@@ -338,8 +341,8 @@ return {
 		},
 		lazy = false,
 		cmd = "Neotree",
-		keys = { -- lazy load commands
-			{ -- netrw-like explorer
+		keys = {
+			{
 				"<leader>-",
 				function()
 					local reveal_file = vim.fn.expand('%:p')
@@ -365,7 +368,7 @@ return {
 				desc = "Explorer NeoTree (root dir)",
 			},
 			{ -- buffers
-				"<leader>fb",
+				"<leader>cb",
 				function()
 					require('neo-tree.command').execute({
 						action = "focus",
@@ -383,7 +386,14 @@ return {
 			close_if_last_window = false,
 			popup_border_style = "rounded",
 			enable_diagnostics = true,
-			open_files_do_not_replace_types = { "terminal", "trouble", "Trouble", "Outline", "qf", "edgy" },
+			open_files_do_not_replace_types = {
+				"terminal",
+				"trouble",
+				"Trouble",
+				"Outline",
+				"qf",
+				"edgy"
+			},
 			default_component_configs = {
 				container = {
 					enable_character_fade = true
@@ -411,7 +421,7 @@ return {
 				},
 			},
 			filesystem = {
-				hijack_netrw_behavior = "open_current",
+				hijack_netrw_behavior = "disabled",
 				filtered_items = {
 					visible = true,
 					hide_dotfiles = true,
@@ -863,13 +873,54 @@ return {
 			vim.g.neominimap = {
 				auto_enable = true,
 				layout = "split",
+				split = {
+					close_if_last_window = true,
+					fix_width = true,
+				},
 				close_if_last_window = true,
 				exclude_filetypes = {
 					"help",
+					"qf",
 					"bigfile",
+					"trouble",
 					"neo-tree",
+					"neominimap",
 					"NeogitStatus",
+					"netrw",
 				},
+				exclude_buftypes = {
+					"nofile",
+					"nowrite",
+					"quickfix",
+					"terminal",
+					"prompt",
+				},
+				tab_filter = function(tab_id)
+					local win_list = vim.api.nvim_tabpage_list_wins(tab_id)
+					local exclude_ft = {
+						"help",
+						"qf",
+						"bigfile",
+						"trouble",
+						"neo-tree",
+						"neominimap",
+						"NeogitStatus",
+						"netrw",
+					}
+					local function is_float_window(win_id)
+						local win_config = vim.api.nvim_win_get_config(win_id)
+						return win_config.relative ~= ""
+					end
+					for _, win_id in ipairs(win_list) do
+						if not is_float_window(win_id) then
+							local bufnr = vim.api.nvim_win_get_buf(win_id)
+							if not vim.tbl_contains(exclude_ft, vim.bo[bufnr].filetype) then
+								return true
+							end
+						end
+					end
+					return false
+				end,
 			}
 		end,
 	},

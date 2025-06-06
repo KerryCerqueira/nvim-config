@@ -258,39 +258,4 @@ return {
 			open_no_results = true,
 		},
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		opts = {
-			panel = {
-				enabled = false,
-			},
-			filetypes = {
-				markdown = true,
-			},
-			suggestion = {
-				enabled = false,
-			},
-		},
-	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		dependencies = {
-			{ "zbirenbaum/copilot.lua" },
-			{ "nvim-lua/plenary.nvim" },
-		},
-		opts = function()
-			local user = vim.env.USER or "User"
-			user = user:sub(1, 1):upper() .. user:sub(2)
-			return {
-				auto_insert_mode = true,
-				question_header = "  " .. user .. " ",
-				answer_header = "  Copilot ",
-				window = {
-					width = 0.4,
-				},
-			}
-		end,
-	},
 }

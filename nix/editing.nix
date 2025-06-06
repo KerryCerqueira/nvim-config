@@ -25,6 +25,7 @@ in
 			] ++ (
 			with extraPkgs; [
 				visual-whitespace-nvim
+				tiny-glimmer-nvim
 			]);
 	};
 }
