@@ -21,6 +21,7 @@ in
 				nvim-treesitter-textobjects
 				nvim-treesitter-textsubjects
 				nvim-ts-context-commentstring
+				nvim-various-textobjs
 				substitute-nvim
 			] ++ (
 			with extraPkgs; [

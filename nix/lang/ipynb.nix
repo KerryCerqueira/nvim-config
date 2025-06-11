@@ -22,7 +22,6 @@ in {
 		];
 		plugins = with pkgs.vimPlugins; [
 			image-nvim
-			jupytext-nvim
 			molten-nvim
 			otter-nvim
 			quarto-nvim
