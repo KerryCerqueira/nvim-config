@@ -11,6 +11,7 @@ in
 		extraPackages = with pkgs; [
 			git
 			curl
+			gh
 		];
 		plugins = with pkgs.vimPlugins; [
 			blink-cmp
