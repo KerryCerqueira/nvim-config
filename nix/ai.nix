@@ -3,7 +3,9 @@ let
 	aiLuaModule = luaModules + /plugins/ai.lua;
 in
 	{
-	xdg.configFile."nvim/lua/plugins/ai.lua".source = aiLuaModule;
+	home.packages = with pkgs; [
+		vectorcode
+	];
 	programs.neovim = {
 		extraLuaPackages = ps: [
 			ps.tiktoken_core
@@ -22,6 +24,8 @@ in
 			img-clip-nvim
 			nui-nvim
 			plenary-nvim
+			vectorcode-nvim
 		];
 	};
+	xdg.configFile."nvim/lua/plugins/ai.lua".source = aiLuaModule;
 }
