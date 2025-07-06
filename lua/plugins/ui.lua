@@ -28,7 +28,9 @@ return {
 				{ "<leader>G", group = "git" },
 				{ "<Leader>x", group = "trouble" },
 				{ "<Leader>s", group = "surround" },
+				{ "<Leader>m", group = "minimap" },
 				{ "<Leader>n", group = "notifications" },
+				{ "\\m", group = "minimap" },
 				{ "\\", group = "toggle" },
 				{ "\\t", group = "treesitter" },
 				{ "]", group = "iteration" },
@@ -69,7 +71,7 @@ return {
 				{
 					title = "%{b:snacks_terminal.id}: %{b:term_title}",
 					ft = "snacks_terminal",
-					size = { height = 20 },
+					size = { height = 8 },
 					filter = function(_, win)
 						return vim.w[win].snacks_win
 							and vim.w[win].snacks_win.position == "bottom"
@@ -80,7 +82,7 @@ return {
 				{ ft = "qf", title = "QuickFix" },
 				{
 					ft = "markdown",
-					size = { height = 20 },
+					size = { height = 12 },
 					-- only show help buffers
 					filter = function(buf)
 						return vim.bo[buf].buftype == "help"
@@ -88,7 +90,7 @@ return {
 				},
 				{
 					ft = "text",
-					size = { height = 20 },
+					size = { height = 12 },
 					-- only show help buffers
 					filter = function(buf)
 						return vim.bo[buf].buftype == "help"
@@ -96,7 +98,7 @@ return {
 				},
 				{
 					ft = "help",
-					size = { height = 20 },
+					size = { height = 12 },
 					-- only show help buffers
 					filter = function(buf)
 						return vim.bo[buf].buftype == "help"
@@ -143,7 +145,7 @@ return {
 				{
 					ft = "codecompanion",
 					title = "AI chat",
-					size = { width = 100 },
+					size = { width = 70 },
 					filter = function(_, win)
 						return vim.api.nvim_win_get_config(win).relative == ""
 					end,

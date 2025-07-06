@@ -38,7 +38,11 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
-			"ravitemer/codecompanion-history.nvim"
+			"ravitemer/codecompanion-history.nvim",
+			{
+				"Davidyz/VectorCode",
+				dependencies = { "nvim-lua/plenary.nvim" },
+			},
 		},
 		keys = {
 			{
@@ -114,6 +118,11 @@ return {
 						delete_on_clearing_chat = false,
 						dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
 						enable_logging = false,
+					},
+				},
+				vectorcode = {
+					opts = {
+						add_tool = true,
 					},
 				},
 			},
