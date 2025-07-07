@@ -1,5 +1,9 @@
 return {
 	{
+		'danilamihailov/beacon.nvim',
+		opts = {},
+	},
+	{
 		"folke/which-key.nvim",
 		dependencies = { "echasnovski/mini.icons" },
 		event = "VeryLazy",
