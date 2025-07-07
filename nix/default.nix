@@ -16,6 +16,9 @@ in {
 		(import ./git.nix moduleArgs)
 		(import ./ai.nix moduleArgs)
 	];
+	home.packages = with pkgs; [
+		wl-clipboard
+	];
 	programs.neovim = {
 		enable = true;
 		withRuby = true;
