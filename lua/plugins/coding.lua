@@ -37,7 +37,6 @@ return {
 				default = {
 					"copilot",
 					"lsp",
-					"snippets",
 					"path",
 					"git",
 				},
