@@ -1,0 +1,165 @@
+{
+	"name": "nvim-config",
+	"version": "0.1.0",
+	"system_prompt": "You are an expert in Neovim and Nix configuration. Use the provided context to answer questions or make suggestions about this codebase.",
+	"groups": [
+		{
+			"name": "Language Plugin Specs",
+			"system_prompt": "These are all language-specific plugin specifications for Neovim.",
+			"data": [
+				"lang_ipynb_lua",
+				"lang_json_lua",
+				"lang_lua_lua",
+				"lang_markdown_lua",
+				"lang_nix_lua",
+				"lang_python_lua",
+				"lang_rust_lua",
+				"lang_shell_lua",
+				"lang_tex_lua",
+				"lang_toml_lua",
+				"lang_yaml_lua"
+			]
+		},
+		{
+			"name": "Plugin Specs",
+			"system_prompt": "These are all general plugin specifications for Neovim.",
+			"data": [
+				"plugins_ai_lua",
+				"plugins_coding_lua",
+				"plugins_editing_lua",
+				"plugins_formatting_lua",
+				"plugins_ui_lua"
+			]
+		},
+		{
+			"name": "Core Lua Config",
+			"system_prompt": "This is the core Neovim configuration: entrypoint, options, keymaps, and plugin loader.",
+			"data": [
+				"init_lua",
+				"options_lua",
+				"keymaps_lua",
+				"lazy_setup_lua"
+			]
+		},
+		{
+			"name": "Nix Modules",
+			"system_prompt": "These are Nix configuration modules for language support and Neovim setup.",
+			"data": [
+				"nix_lang_python_nix",
+				"nix_nixcompat_mason_lua"
+			]
+		}
+	],
+	"data": {
+		"lang_ipynb_lua": {
+			"type": "file",
+			"path": "lua/lang/ipynb.lua",
+			"description": "Language-specific plugin specs for Jupyter/IPython notebooks."
+		},
+		"lang_json_lua": {
+			"type": "file",
+			"path": "lua/lang/json.lua",
+			"description": "Language-specific plugin specs for JSON."
+		},
+		"lang_lua_lua": {
+			"type": "file",
+			"path": "lua/lang/lua.lua",
+			"description": "Language-specific plugin specs for Lua."
+		},
+		"lang_markdown_lua": {
+			"type": "file",
+			"path": "lua/lang/markdown.lua",
+			"description": "Language-specific plugin specs for Markdown."
+		},
+		"lang_nix_lua": {
+			"type": "file",
+			"path": "lua/lang/nix.lua",
+			"description": "Language-specific plugin specs for Nix."
+		},
+		"lang_python_lua": {
+			"type": "file",
+			"path": "lua/lang/python.lua",
+			"description": "Language-specific plugin specs for Python."
+		},
+		"lang_rust_lua": {
+			"type": "file",
+			"path": "lua/lang/rust.lua",
+			"description": "Language-specific plugin specs for Rust."
+		},
+		"lang_shell_lua": {
+			"type": "file",
+			"path": "lua/lang/shell.lua",
+			"description": "Language-specific plugin specs for Shell scripting."
+		},
+		"lang_tex_lua": {
+			"type": "file",
+			"path": "lua/lang/tex.lua",
+			"description": "Language-specific plugin specs for LaTeX."
+		},
+		"lang_toml_lua": {
+			"type": "file",
+			"path": "lua/lang/toml.lua",
+			"description": "Language-specific plugin specs for TOML."
+		},
+		"lang_yaml_lua": {
+			"type": "file",
+			"path": "lua/lang/yaml.lua",
+			"description": "Language-specific plugin specs for YAML."
+		},
+		"plugins_ai_lua": {
+			"type": "file",
+			"path": "lua/plugins/ai.lua",
+			"description": "Plugin specs for AI/code assistant plugins."
+		},
+		"plugins_coding_lua": {
+			"type": "file",
+			"path": "lua/plugins/coding.lua",
+			"description": "Plugin specs for coding, LSP, and completion."
+		},
+		"plugins_editing_lua": {
+			"type": "file",
+			"path": "lua/plugins/editing.lua",
+			"description": "Plugin specs for editing enhancements."
+		},
+		"plugins_formatting_lua": {
+			"type": "file",
+			"path": "lua/plugins/formatting.lua",
+			"description": "Plugin specs for formatting and linting."
+		},
+		"plugins_ui_lua": {
+			"type": "file",
+			"path": "lua/plugins/ui.lua",
+			"description": "Plugin specs for UI and appearance."
+		},
+		"init_lua": {
+			"type": "file",
+			"path": "init.lua",
+			"description": "Entrypoint for Neovim configuration."
+		},
+		"options_lua": {
+			"type": "file",
+			"path": "lua/options.lua",
+			"description": "General Neovim options and settings."
+		},
+		"keymaps_lua": {
+			"type": "file",
+			"path": "lua/keymaps.lua",
+			"description": "Custom keymaps for Neovim."
+		},
+		"lazy_setup_lua": {
+			"type": "file",
+			"path": "lua/lazy-setup.lua",
+			"description": "Plugin loader and setup for lazy.nvim."
+		},
+		"nix_lang_python_nix": {
+			"type": "file",
+			"path": "nix/lang/python.nix",
+			"description": "Nix module for Python language support in Neovim."
+		},
+		"nix_nixcompat_mason_lua": {
+			"type": "file",
+			"path": "nix/nixcompat/lua/mason.lua",
+			"description": "Nix compatibility module for Mason LSP management."
+		}
+	}
+}
