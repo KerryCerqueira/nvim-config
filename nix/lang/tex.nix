@@ -8,7 +8,6 @@ in {
 	];
 	programs.neovim = {
 		extraPackages = with pkgs; [
-			texliveMedium
 			texlab
 		];
 		plugins = with pkgs.vimPlugins; [
