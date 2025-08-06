@@ -1,11 +1,10 @@
-{ luaModules, ... }: { pkgs, ...}:
-let
-	hyprlangLuaModule = luaModules + /lang/hyprlang.lua;
-in {
-	xdg.configFile."nvim/lua/lang/hyprlang.lua".source = hyprlangLuaModule;
+{ pkgs, ...}:
+
+{
 	programs.neovim = {
-		extraPackages = with pkgs; [
-			hyprls
-		];
+		extraPackages = with pkgs; [ hyprls ];
+		plugins = [ pkgs.vimPlugins.nvim-lspconfig ];
 	};
+	xdg.configFile."nvim/lua/lang/hyprlang.lua".source =
+		../../lua/lang/hyprlang.lua;
 }

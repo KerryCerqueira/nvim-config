@@ -1,17 +1,18 @@
-{ luaModules, compatModules }@modules: { ... }:
+{ ... }:
+
 {
 	imports = [
-		(import ./hyprlang.nix modules)
-		(import ./json.nix modules)
-		(import ./lua.nix modules)
-		(import ./markdown.nix modules)
-		(import ./nix.nix modules)
-		(import ./ipynb.nix modules)
-		(import ./python.nix modules)
-		(import ./rust.nix modules)
-		(import ./shell.nix modules)
-		(import ./tex.nix modules)
-		(import ./toml.nix modules)
-		(import ./yaml.nix modules)
+		./hyprlang.nix
+		./json.nix
+		./lua.nix
+		./markdown.nix
+		./nix.nix
+		./ipynb.nix
+		./python.nix
+		./rust.nix
+		./shell.nix
+		./tex.nix
+		./toml.nix
+		./yaml.nix
 	];
 }

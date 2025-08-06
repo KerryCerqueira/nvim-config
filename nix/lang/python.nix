@@ -1,8 +1,6 @@
-{ luaModules, ... }: { pkgs, ...}:
-let
-	pythonLuaModule = luaModules + /lang/python.lua;
-in {
-	xdg.configFile."nvim/lua/lang/python.lua".source = pythonLuaModule;
+{ pkgs, ...}:
+
+{
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			pyright
@@ -11,6 +9,8 @@ in {
 		];
 		plugins = with pkgs.vimPlugins; [
 			neogen
+			nvim-lspconfig
 		];
 	};
+	xdg.configFile."nvim/lua/lang/python.lua".source = ../../lua/lang/python.lua;
 }

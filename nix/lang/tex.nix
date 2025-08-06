@@ -1,8 +1,6 @@
-{ luaModules, ... }: { pkgs, ...}:
-let
-	texLuaModule = luaModules + /lang/tex.lua;
-in {
-	xdg.configFile."nvim/lua/lang/tex.lua".source = texLuaModule;
+{ pkgs, ...}:
+
+{
 	home.packages = with pkgs; [
 		zathura
 	];
@@ -17,4 +15,5 @@ in {
 			nvim-lint
 		];
 	};
+	xdg.configFile."nvim/lua/lang/tex.lua".source = ../../lua/lang/tex.lua;
 }

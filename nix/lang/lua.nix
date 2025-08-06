@@ -1,11 +1,6 @@
-{ luaModules, compatModules, ... }: { pkgs, ...}:
-let
-	luaLuaModule = luaModules + /lang/lua.lua;
-in {
-	xdg.configFile = {
-		"nvim/lua/lang/lua.lua".source = luaLuaModule;
-		"nvim/lua/nixcompat/neodev.lua".text = compatModules.neodev;
-	};
+{ pkgs, ...}:
+
+{
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			stylua
@@ -16,5 +11,8 @@ in {
 			nvim-treesitter.withAllGrammars
 			conform-nvim
 		];
+	};
+	xdg.configFile = {
+		"nvim/lua/lang/lua.lua".source = ../../lua/lang/lua.lua;
 	};
 }

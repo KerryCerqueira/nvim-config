@@ -1,8 +1,7 @@
-{ luaModules, ... }: { pkgs, ...}:
-let
-	yamlLuaModule = luaModules + /lang/yaml.lua;
-in {
-	xdg.configFile."nvim/lua/lang/yaml.lua".source = yamlLuaModule;
+{ pkgs, ...}:
+
+{
+	xdg.configFile."nvim/lua/lang/yaml.lua".source = ../../lua/lang/yaml.lua;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			nodePackages.prettier
@@ -11,6 +10,7 @@ in {
 		plugins = with pkgs.vimPlugins; [
 			SchemaStore-nvim
 			conform-nvim
+			nvim-lspconfig
 		];
 	};
 }

@@ -1,20 +1,10 @@
-{ flakeRoot }: { pkgs, config, ... }:
-let
-	nvimPlugDirs = config.programs.neovim.finalPackage.passthru.packpathDirs;
-	nvimPackDir = pkgs.vimUtils.packDir nvimPlugDirs;
-	compatModules = import ./nixcompat { inherit pkgs config; };
-	luaModules = flakeRoot + /lua;
-	moduleArgs = {
-		inherit compatModules luaModules;
-	};
-in {
+{ pkgs, ... }:
+
+{
 	imports = [
-		(import ./lang moduleArgs)
-		(import ./ui.nix moduleArgs)
-		(import ./coding.nix moduleArgs)
-		(import ./editing.nix moduleArgs)
-		(import ./git.nix moduleArgs)
-		(import ./ai.nix moduleArgs)
+		./plugins
+		./lang
+		./lazynixcompat.nix
 	];
 	home.packages = with pkgs; [
 		wl-clipboard
@@ -31,37 +21,32 @@ in {
 		plugins = with pkgs.vimPlugins; [
 			lazy-nvim
 		];
-		extraLuaConfig = builtins.readFile (flakeRoot + /init.lua);
+		extraLuaConfig = builtins.readFile ../init.lua;
+		lazyNixCompat.enable = true;
 	};
 	xdg.configFile = {
-		"nvim/lua/options.lua".source = luaModules + /options.lua;
-		"nvim/lua/autocommands.lua".source = luaModules + /autocommands.lua;
-		"nvim/lua/keymaps.lua".source = luaModules + /keymaps.lua;
+		"nvim/lua/options.lua".source = ../lua/options.lua;
+		"nvim/lua/autocommands.lua".source = ../lua/autocommands.lua;
+		"nvim/lua/keymaps.lua".source = ../lua/keymaps.lua;
 		"nvim/lua/lazy-setup.lua".text = #lua
 			''
 				return {
 					setup = function()
 						require("lazy").setup({
 							spec = {
-								{ import = "plugins" },
+								{ import = "plugins.ai" },
+								{ import = "plugins.ui" },
+								{ import = "plugins.coding" },
+								{ import = "plugins.editing" },
+								{ import = "plugins.git" },
 								{ import = "lang" },
-								{ import = "nixcompat" },
+								{ import = "lazy-nix-compat" },
 								{ import = "extra" },
-							},
-							dev = {
-								path = "${nvimPackDir}/pack/myNeovimPackages/start",
-								patterns = {""},
-							},
-							performance = {
-								reset_packpath = false,
-								rtp = { reset = false, },
 							},
 							install = { missing = false, },
 						})
 					end,
 				}
 			'';
-		"nvim/lua/nixcompat/mason.lua".text = compatModules.mason;
-		"nvim/lua/nixcompat/treesitter.lua".text = compatModules.treesitter;
 	};
 }

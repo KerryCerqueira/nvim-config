@@ -4,9 +4,7 @@
 		{
 			homeManagerModules.nvim-config = { ... }:
 				{
-					imports = [
-						(import ./nix { flakeRoot = ./.; })
-					];
+					imports = [ ./nix ];
 				};
 		};
 }

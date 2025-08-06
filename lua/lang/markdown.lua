@@ -1,7 +1,6 @@
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "folke/snacks.nvim" },
 		opts = {
 			preset  = "obsidian",
 			file_types = { "markdown", "norg", "rmd", "org", "quarto" },

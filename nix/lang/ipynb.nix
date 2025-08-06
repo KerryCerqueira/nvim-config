@@ -1,8 +1,6 @@
-{ luaModules, ... }: { pkgs, ...}:
-let
-	ipynbLuaModule = luaModules + /lang/ipynb.lua;
-in {
-	xdg.configFile."nvim/lua/lang/ipynb.lua".source = ipynbLuaModule;
+{ pkgs, ...}:
+
+{
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			python312Packages.jupytext
@@ -22,9 +20,12 @@ in {
 		];
 		plugins = with pkgs.vimPlugins; [
 			image-nvim
+			img-clip-nvim
 			molten-nvim
+			nvim-lspconfig
 			otter-nvim
 			quarto-nvim
 		];
 	};
+	xdg.configFile."nvim/lua/lang/ipynb.lua".source = ../../lua/lang/ipynb.lua;
 }

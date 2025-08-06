@@ -1,8 +1,7 @@
-{ luaModules, ... }: { pkgs, ...}:
+{ pkgs, ...}:
 let
-	markdownLuaModule = luaModules + /lang/markdown.lua;
+	markdownLuaModule = ../../lua/lang/markdown.lua;
 in {
-	xdg.configFile."nvim/lua/lang/markdown.lua".source = markdownLuaModule;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			markdownlint-cli2
@@ -11,13 +10,12 @@ in {
 			nodePackages.prettier
 		];
 		plugins = with pkgs.vimPlugins; [
-			snacks-nvim
 			render-markdown-nvim
 			img-clip-nvim
-			nabla-nvim
 			nvim-lint
-			nvim-treesitter.withAllGrammars
+			nvim-lspconfig
 			conform-nvim
 		];
 	};
+	xdg.configFile."nvim/lua/lang/markdown.lua".source = markdownLuaModule;
 }
