@@ -43,6 +43,10 @@
 								{ import = "lazy-nix-compat" },
 								{ import = "extra" },
 							},
+							performance = {
+								reset_packpath = false,
+								rtp = { reset = false, },
+							},
 							install = { missing = false, },
 						})
 					end,
