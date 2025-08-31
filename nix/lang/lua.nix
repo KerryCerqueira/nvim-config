@@ -7,7 +7,7 @@
 			lua-language-server
 		];
 		plugins = with pkgs.vimPlugins; [
-			neodev-nvim
+			lazydev-nvim
 			nvim-treesitter.withAllGrammars
 			conform-nvim
 		];

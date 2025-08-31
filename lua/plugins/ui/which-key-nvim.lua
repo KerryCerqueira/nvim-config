@@ -22,7 +22,6 @@ return {
 		preset = "modern",
 		spec = {
 			{ "<leader>a", group = "ai" },
-			{ "<leader>b", group = "bufferline" },
 			{ "<leader>f", group = "find..." },
 			{ "<leader>G", group = "git" },
 			{ "<Leader>x", group = "trouble" },

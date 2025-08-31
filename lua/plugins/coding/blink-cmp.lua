@@ -1,3 +1,4 @@
+---@module 'blink.cmp'
 return {
 	'saghen/blink.cmp',
 	dependencies = {
@@ -10,6 +11,7 @@ return {
 		{ "xzbdmw/colorful-menu.nvim", },
 		{ "fang2hou/blink-copilot", },
 	},
+	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = "enter",
@@ -20,7 +22,7 @@ return {
 			},
 			completion = {
 				menu = {
-					auto_show = function(ctx)
+					auto_show = function(_)
 						return vim.fn.getcmdtype() == ":"
 					end,
 				},

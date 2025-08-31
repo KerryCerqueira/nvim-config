@@ -3,7 +3,6 @@
 {
 	imports = [
 		./beacon-nvim.nix
-		./bufferline.nix
 		./catppuccin-nvim.nix
 		./edgy-nvim.nix
 		./image-nvim.nix
