@@ -1,4 +1,9 @@
+if false then
+	require("lazy")
+	require("which-key")
+end
 
+---@type LazySpec
 return {
 	{
 		'jmbuhr/otter.nvim',
@@ -231,5 +236,16 @@ return {
 				}
 			)
 		end,
+	},
+	{
+		"folke/which-key.nvim",
+		optional = true,
+		opts_extend = { "spec" },
+		---@type wk.Opts
+		opts = {
+			spec = {
+				{ "<localleader>m", group = "molten" },
+			},
+		},
 	},
 }

@@ -1,3 +1,9 @@
+if false then
+	require("lazy")
+	require("which-key")
+end
+
+---@type LazySpec
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -62,6 +68,17 @@ return {
 						},
 					},
 				},
+			},
+		},
+	},
+	{
+		"folke/which-key.nvim",
+		opts_extend = { "spec" },
+		optional = true,
+		---@type wk.Opts
+		opts = {
+			spec = {
+				{ "<localleader>l", group = "vimtex" },
 			},
 		},
 	},

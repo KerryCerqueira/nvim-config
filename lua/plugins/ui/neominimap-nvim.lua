@@ -1,5 +1,11 @@
+if false then
+	require("lazy")
+	require("which-key")
+	require("neominimap.config.meta")
+end
+
+---@type LazySpec
 return {
-	---@module "neominimap.config.meta"
 	{
 		"Isrothy/neominimap.nvim",
 		lazy = false,
@@ -11,13 +17,10 @@ return {
 			{ "<leader>mf", "<cmd>Neominimap ToggleFocus<cr>", desc = "Switch focus on minimap" },
 		},
 		init = function()
+			---@type Neominimap.UserConfig
 			vim.g.neominimap = {
+				layout = "float",
 				auto_enable = true,
-				layout = "split",
-				split = {
-					close_if_last_window = true,
-					fix_width = true,
-				},
 				close_if_last_window = true,
 				exclude_filetypes = {
 					"help",
@@ -64,5 +67,17 @@ return {
 				end,
 			}
 		end,
+	},
+	{
+		"folke/which-key.nvim",
+		optional = true,
+		opts_extend = { "spec" },
+		---@type wk.Opts
+		opts = {
+			spec = {
+				{ "\\m", group = "minimap" },
+				{ "<leader>m", group = "minimap" },
+			},
+		},
 	},
 }

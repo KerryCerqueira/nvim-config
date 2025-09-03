@@ -1,3 +1,9 @@
+if false then
+	require("lazy")
+	require("which-key")
+end
+
+---@type LazySpec
 return {
 	"folke/which-key.nvim",
 	dependencies = { "echasnovski/mini.icons" },
@@ -18,23 +24,12 @@ return {
 			desc = "Window Hydra Mode (which-key)",
 		},
 	},
+	opts_extend = { "spec" },
+	---@type wk.Opts
 	opts = {
 		preset = "modern",
 		spec = {
-			{ "<leader>a", group = "ai" },
-			{ "<leader>f", group = "find..." },
-			{ "<leader>G", group = "git" },
-			{ "<Leader>x", group = "trouble" },
-			{ "<Leader>s", group = "surround" },
-			{ "<Leader>m", group = "minimap" },
-			{ "<Leader>n", group = "notifications" },
-			{ "\\m", group = "minimap" },
 			{ "\\", group = "toggle" },
-			{ "\\t", group = "treesitter" },
-			{ "]", group = "iteration" },
-			{ "[", group = "reverse iteration" },
-			{ "<localleader>l", group = "vimtex" },
-			{ "<localleader>m", group = "molten" },
 		},
 	},
 	init = function()
