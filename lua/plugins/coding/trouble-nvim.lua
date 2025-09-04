@@ -98,6 +98,7 @@ return {
 	{
 		"folke/edgy.nvim",
 		optional = true,
+		opts_extend = { "bottom", "left", "right" },
 		---@type Edgy.Config
 		opts = {
 			bottom = {
