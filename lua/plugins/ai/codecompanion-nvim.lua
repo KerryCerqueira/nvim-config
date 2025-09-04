@@ -1,6 +1,7 @@
 if false then
 	require("lazy")
 	require("which-key")
+	require("edgy")
 end
 local user = vim.env.USER or "User"
 user = user:sub(1, 1):upper() .. user:sub(2)
@@ -109,6 +110,24 @@ return {
 		opts = {
 			spec = {
 				{ "<leader>a", group = "ai" },
+			},
+		},
+	},
+	{
+		"folke/edgy.nvim",
+		optional = true,
+		opts_extend = { "bottom", "left", "right" },
+		---@type Edgy.Config
+		opts = {
+			right = {
+				{
+					ft = "codecompanion",
+					title = "AI chat",
+					size = { width = 70 },
+					filter = function(_, win)
+						return vim.api.nvim_win_get_config(win).relative == ""
+					end,
+				},
 			},
 		},
 	},
