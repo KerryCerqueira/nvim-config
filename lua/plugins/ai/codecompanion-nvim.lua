@@ -18,6 +18,14 @@ return {
 				dependencies = { "nvim-lua/plenary.nvim" },
 			},
 		},
+		cmd = {
+			"CodeCompanion",
+			"CodeCompanionChat",
+			"CodeCompanionCmd",
+			"CodeCompanionActions",
+			"CodeCompanionHistory",
+			"CodeCompanionSummaries",
+		},
 		keys = {
 			{
 				"<Leader>aa",

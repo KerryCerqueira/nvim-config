@@ -57,4 +57,37 @@ return {
 			},
 		},
 	},
+	{
+		'saghen/blink.cmp',
+		dependencies = {
+			{ 'Kaiser-Yang/blink-cmp-git', },
+		},
+		optional = true,
+		opts_extend = { "sources.default" },
+		---@type blink.cmp.Config
+		opts = {
+			sources = {
+				default = { "git", },
+				providers = {
+					git = {
+						score_offset = 100,
+						enabled = function()
+							return vim.tbl_contains(
+								{ "octo", "gitcommit", "markdown" },
+								vim.bo.filetype
+							)
+						end,
+						name = "git",
+						module = "blink-cmp-git",
+						opts = {
+							commit = {},
+							git_centers = {
+								github = {},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
 }

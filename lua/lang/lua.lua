@@ -1,5 +1,3 @@
----@module 'lazydev'
----@module 'blink.cmp'
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -38,6 +36,7 @@ return {
 	{
 		"saghen/blink.cmp",
 		optional = true,
+		opts_extend = { "sources.default" },
 		---@type blink.cmp.Config
 		opts = {
 			sources = {

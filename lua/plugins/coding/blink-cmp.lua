@@ -1,16 +1,20 @@
----@module 'blink.cmp'
+if false then
+	require("lazy")
+	require("blink.cmp")
+end
+
+---@type LazySpec
 return {
 	'saghen/blink.cmp',
 	dependencies = {
-		{ 'Kaiser-Yang/blink-cmp-git', },
 		{ "rafamadriz/friendly-snippets", },
 		{
 			"danymat/neogen",
 			opts = { snippet_engine = "nvim" },
 		},
 		{ "xzbdmw/colorful-menu.nvim", },
-		{ "fang2hou/blink-copilot", },
 	},
+	opts_extend = { "sources.default" },
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
@@ -36,34 +40,12 @@ return {
 		appearance = { nerd_font_variant = "normal" },
 		sources = {
 			default = {
-				"copilot",
 				"lsp",
 				"path",
-				"git",
 			},
 			providers = {
 				lsp = {
 					timeout_ms = 2000,
-				},
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = 100,
-					async = true,
-				},
-				git = {
-					score_offset = 100,
-					enabled = function()
-						return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
-					end,
-					name = "git",
-					module = "blink-cmp-git",
-					opts = {
-						commit = {},
-						git_centers = {
-							github = {},
-						},
-					},
 				},
 			},
 		},
@@ -102,7 +84,7 @@ return {
 						},
 					},
 				},
-			}
-		}
+			},
+		},
 	},
 }
