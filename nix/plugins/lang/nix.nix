@@ -3,16 +3,14 @@
 {
 	programs.neovim = {
 		extraPackages = with pkgs; [
-			stylua
-			lua-language-server
+			alejandra
+			nil
 		];
 		plugins = with pkgs.vimPlugins; [
-			lazydev-nvim
+			nvim-lspconfig
 			nvim-treesitter.withAllGrammars
 			conform-nvim
 		];
 	};
-	xdg.configFile = {
-		"nvim/lua/lang/lua.lua".source = ../../lua/lang/lua.lua;
-	};
+	xdg.configFile."nvim/lua/plugins/lang/nix.lua".source = ../../../lua/plugins/lang/nix.lua;
 }

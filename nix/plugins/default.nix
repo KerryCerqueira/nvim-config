@@ -4,6 +4,7 @@
 		./coding
 		./git
 		./editing
+		./lang
 		./ui
 	];
 }

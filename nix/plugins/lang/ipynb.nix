@@ -27,5 +27,5 @@
 			quarto-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/lang/ipynb.lua".source = ../../lua/lang/ipynb.lua;
+	xdg.configFile."nvim/lua/plugins/lang/ipynb.lua".source = ../../../lua/plugins/lang/ipynb.lua;
 }

@@ -15,5 +15,5 @@
 			nvim-lint
 		];
 	};
-	xdg.configFile."nvim/lua/lang/tex.lua".source = ../../lua/lang/tex.lua;
+	xdg.configFile."nvim/lua/plugins/lang/tex.lua".source = ../../../lua/plugins/lang/tex.lua;
 }

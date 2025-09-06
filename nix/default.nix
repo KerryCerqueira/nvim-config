@@ -3,7 +3,6 @@
 {
 	imports = [
 		./plugins
-		./lang
 		./lazynixcompat.nix
 	];
 	home.packages = with pkgs; [
@@ -39,7 +38,7 @@
 								{ import = "plugins.coding" },
 								{ import = "plugins.editing" },
 								{ import = "plugins.git" },
-								{ import = "lang" },
+								{ import = "plugins.lang" },
 								{ import = "lazy-nix-compat" },
 								{ import = "extra" },
 							},

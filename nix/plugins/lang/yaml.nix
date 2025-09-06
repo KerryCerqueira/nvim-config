@@ -1,15 +1,17 @@
 { pkgs, ...}:
 
 {
+	xdg.configFile."nvim/lua/plugins/lang/yaml.lua".source =
+		../../../lua/plugins/lang/yaml.lua;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			nodePackages.prettier
-			taplo
+			yaml-language-server
 		];
 		plugins = with pkgs.vimPlugins; [
+			SchemaStore-nvim
 			conform-nvim
 			nvim-lspconfig
 		];
 	};
-	xdg.configFile."nvim/lua/lang/toml.lua".source = ../../lua/lang/toml.lua;
 }

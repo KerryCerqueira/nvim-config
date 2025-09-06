@@ -1,16 +1,16 @@
 { pkgs, ...}:
 
 {
-	xdg.configFile."nvim/lua/lang/yaml.lua".source = ../../lua/lang/yaml.lua;
 	programs.neovim = {
 		extraPackages = with pkgs; [
+			vscode-langservers-extracted
 			nodePackages.prettier
-			yaml-language-server
 		];
 		plugins = with pkgs.vimPlugins; [
-			SchemaStore-nvim
 			conform-nvim
 			nvim-lspconfig
+			SchemaStore-nvim
 		];
 	};
+	xdg.configFile."nvim/lua/plugins/lang/json.lua".source = ../../../lua/plugins/lang/json.lua;
 }

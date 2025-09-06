@@ -13,5 +13,5 @@
 			conform-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/lang/shell.lua".source = ../../lua/lang/shell.lua;
+	xdg.configFile."nvim/lua/plugins/lang/shell.lua".source = ../../../lua/plugins/lang/shell.lua;
 }

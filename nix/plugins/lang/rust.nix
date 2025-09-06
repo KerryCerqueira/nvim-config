@@ -5,5 +5,5 @@
 		rustaceanvim
 		crates-nvim
 	];
-	xdg.configFile."nvim/lua/lang/rust.lua".source = ../../lua/lang/rust.lua;
+	xdg.configFile."nvim/lua/plugins/lang/rust.lua".source = ../../../lua/plugins/lang/rust.lua;
 }

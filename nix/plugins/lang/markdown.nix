@@ -1,6 +1,6 @@
 { pkgs, ...}:
 let
-	markdownLuaModule = ../../lua/lang/markdown.lua;
+	markdownLuaModule = ../../../lua/plugins/lang/markdown.lua;
 in {
 	programs.neovim = {
 		extraPackages = with pkgs; [
@@ -17,5 +17,5 @@ in {
 			conform-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/lang/markdown.lua".source = markdownLuaModule;
+	xdg.configFile."nvim/lua/plugins/lang/markdown.lua".source = markdownLuaModule;
 }

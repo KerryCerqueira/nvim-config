@@ -3,14 +3,13 @@
 {
 	programs.neovim = {
 		extraPackages = with pkgs; [
-			vscode-langservers-extracted
 			nodePackages.prettier
+			taplo
 		];
 		plugins = with pkgs.vimPlugins; [
 			conform-nvim
 			nvim-lspconfig
-			SchemaStore-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/lang/json.lua".source = ../../lua/lang/json.lua;
+	xdg.configFile."nvim/lua/plugins/lang/toml.lua".source = ../../../lua/plugins/lang/toml.lua;
 }

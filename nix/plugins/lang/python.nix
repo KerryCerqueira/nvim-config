@@ -12,5 +12,5 @@
 			nvim-lspconfig
 		];
 	};
-	xdg.configFile."nvim/lua/lang/python.lua".source = ../../lua/lang/python.lua;
+	xdg.configFile."nvim/lua/plugins/lang/python.lua".source = ../../../lua/plugins/lang/python.lua;
 }
