@@ -1,8 +1,6 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 
 {
-	xdg.configFile."nvim/lua/plugins/lang/yaml.lua".source =
-		../../../lua/plugins/lang/yaml.lua;
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			nodePackages.prettier
@@ -13,5 +11,11 @@
 			conform-nvim
 			nvim-lspconfig
 		];
+	};
+	xdg.configFile = {
+		"nvim/lua/plugins/lang/yaml.lua".source =
+			../../../lua/plugins/lang/yaml.lua;
+		"nvim/lsp/yamlls.lua".source =
+			../../../lsp/yamlls.lua;
 	};
 }

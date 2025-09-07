@@ -1,26 +1,19 @@
+if false then
+	require("lazy")
+	require("blink.cmp")
+	require("lazydev")
+end
+
+---@type LazySpec
 return {
 	{
-		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				},
-			},
-		},
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
+		optional = true,
 		opts = { ensure_installed = { "luap", "luau", "luadoc", "lua" } },
 	},
 	{
 		"stevearc/conform.nvim",
+		optional = true,
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },

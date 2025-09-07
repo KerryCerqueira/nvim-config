@@ -1,15 +1,9 @@
+if false then
+	require("lazy")
+end
+
+---@type LazySpec
 return {
-	{
-		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				bashls = {
-					filetypes = { "bash", "sh", "zsh",},
-				},
-				fish_lsp = {},
-			},
-		},
-	},
 	{
 		"stevearc/conform.nvim",
 		opts = {

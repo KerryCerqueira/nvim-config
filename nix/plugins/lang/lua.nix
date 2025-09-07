@@ -14,5 +14,6 @@
 	};
 	xdg.configFile = {
 		"nvim/lua/plugins/lang/lua.lua".source = ../../../lua/plugins/lang/lua.lua;
+		"nvim/lsp/lua_ls.lua".source = ../../../lsp/lua_ls.lua;
 	};
 }

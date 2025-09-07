@@ -11,5 +11,10 @@
 			nvim-lspconfig
 		];
 	};
-	xdg.configFile."nvim/lua/plugins/lang/toml.lua".source = ../../../lua/plugins/lang/toml.lua;
+	xdg.configFile = {
+		"nvim/lua/plugins/lang/toml.lua".source =
+			../../../lua/plugins/lang/toml.lua;
+		"nvim/lsp/taplo.lua".source =
+			../../../lsp/taplo.lua;
+	};
 }

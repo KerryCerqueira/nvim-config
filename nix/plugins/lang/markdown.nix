@@ -1,7 +1,6 @@
 { pkgs, ...}:
-let
-	markdownLuaModule = ../../../lua/plugins/lang/markdown.lua;
-in {
+
+{
 	programs.neovim = {
 		extraPackages = with pkgs; [
 			markdownlint-cli2
@@ -17,5 +16,10 @@ in {
 			conform-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/plugins/lang/markdown.lua".source = markdownLuaModule;
+	xdg.configFile = {
+		"nvim/lua/plugins/lang/markdown.lua".source =
+			../../../lua/plugins/lang/markdown.lua;
+		"nvim/lsp/marksman.lua".source =
+			../../../lsp/marksman.lua;
+	};
 }

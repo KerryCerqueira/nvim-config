@@ -12,5 +12,10 @@
 			SchemaStore-nvim
 		];
 	};
-	xdg.configFile."nvim/lua/plugins/lang/json.lua".source = ../../../lua/plugins/lang/json.lua;
+	xdg.configFile = {
+		"nvim/lua/plugins/lang/json.lua".source =
+			../../../lua/plugins/lang/json.lua;
+		"nvim/lsp/jsonls.lua".source =
+			../../../lsp/jsonls.lua;
+	};
 }

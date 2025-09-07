@@ -1,33 +1,54 @@
+local wk = require("which-key")
+
 return {
 	setup = function()
-		vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-		vim.keymap.set(
-			"n",
-			"<left>",
-			function()
-				vim.notify("Use h to move!")
-			end
-		)
-		vim.keymap.set(
-			"n",
-			"<right>",
-			function()
-				vim.notify("Use l to move!")
-			end
-		)
-		vim.keymap.set(
-			"n",
-			"<up>",
-			function()
-				vim.notify("Use k to move!")
-			end
-		)
-		vim.keymap.set(
-			"n",
-			"<down>",
-			function()
-				vim.notify("Use j to move!")
-			end
+		wk.add(
+			{
+				{
+					"<Esc>",
+					"<cmd>nohlsearch<CR>",
+					desc = "Clear highlight",
+				},
+				{
+					"gD",
+					vim.lsp.buf.declaration,
+					desc = "Go to declaration"
+				},
+				{
+					"<Leader>ca",
+					vim.lsp.buf.code_action,
+					desc = "See available code actions"
+				},
+				{
+					"<Leader>rn",
+					vim.lsp.buf.rename,
+					desc = "Smart rename"
+				},
+				{
+					"<Leader>d",
+					vim.diagnostic.open_float,
+					desc = "Show line diagnostics"
+				},
+				{
+					"<Leader>rs",
+					":LspRestart<CR>",
+					desc = "Restart LSP"
+				},
+				{
+					"<leader>b",
+					group = "buffers",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end
+				},
+				{
+					"C-w",
+					group = "windows",
+					expand = function()
+						return require("which-key.extras").expand.win()
+					end
+				},
+			}
 		)
 	end,
 }

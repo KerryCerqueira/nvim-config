@@ -1,3 +1,8 @@
+if false then
+	require("lazy")
+end
+
+---@type LazySpec
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -44,16 +49,8 @@ return {
 		},
 	},
 	{
-		"neovim/nvim-lspconfig",
-		optional = true,
-		opts = {
-			servers = {
-				marksman = {},
-			},
-		},
-	},
-	{
 		"stevearc/conform.nvim",
+		optional = true,
 		opts = {
 			formatters_by_ft = {
 				markdown = { "prettier" },
