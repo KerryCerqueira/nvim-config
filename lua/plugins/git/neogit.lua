@@ -46,6 +46,10 @@ return {
 		opts = {
 			graph_style = "kitty",
 			kind = "floating",
+			floating = {
+				height = 0.8,
+				width = 0.9,
+			},
 		},
 	},
 	{
