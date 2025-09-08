@@ -4,6 +4,7 @@
 	imports = [
 		./beacon-nvim.nix
 		./catppuccin-nvim.nix
+		./colorful-winsep-nvim.nix
 		./edgy-nvim.nix
 		./image-nvim.nix
 		./lualine-nvim.nix
