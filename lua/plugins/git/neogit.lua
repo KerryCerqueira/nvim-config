@@ -2,6 +2,7 @@ if false then
 	require("lazy")
 	require("which-key")
 	require("neogit")
+	require("blink.cmp")
 end
 
 ---@type LazySpec
@@ -44,6 +45,7 @@ return {
 		---@type NeogitConfig
 		opts = {
 			graph_style = "kitty",
+			kind = "floating",
 		},
 	},
 	{
