@@ -39,8 +39,8 @@
 								{ import = "plugins.editing" },
 								{ import = "plugins.git" },
 								{ import = "plugins.lang" },
-								{ import = "lazy-nix-compat" },
-								{ import = "extra" },
+								{ import = "plugins.nixcompat" },
+								{ import = "plugins.extra" },
 							},
 							performance = {
 								reset_packpath = false,

@@ -12,7 +12,7 @@
 	xdg.configFile = {
 		"nvim/lua/plugins/editing/nvim-treesitter.lua".source =
 			../../../lua/plugins/editing/nvim-treesitter.lua;
-		"nvim/lua/lazy-nix-compat/nvim-treesitter.lua".text = /*lua*/ ''
+		"nvim/lua/plugins/nixcompat/nvim-treesitter.lua".text = /*lua*/ ''
 			return {
 				"nvim-treesitter/nvim-treesitter",
 				optional = true,

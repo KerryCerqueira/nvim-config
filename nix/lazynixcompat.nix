@@ -59,7 +59,7 @@ in {
 		};
 		lazyNixCompatPath = lib.mkOption {
 			type = lib.types.str;
-			default = "nvim/lua/lazy-nix-compat/storepaths.lua";
+			default = "nvim/lua/plugins/nixcompat/storepaths.lua";
 			description = ''
 				Path to compatibility modules relative to XDG_CONFIG_HOME.
 			'';
