@@ -16,6 +16,7 @@
 		./tiny-glimmer-nvim.nix
 		./nvim-ufo.nix
 		./sshfs-nvim.nix
+		./videre-nvim.nix
 		./visual-whitespace-nvim.nix
 		./which-key-nvim.nix
 	];

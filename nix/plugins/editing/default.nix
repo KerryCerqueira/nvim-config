@@ -3,7 +3,6 @@
 {
 	imports = [
 		./conform-nvim.nix
-		./hardtime-nvim.nix
 		./mini-bracketed.nix
 		./mini-comment.nix
 		./mini-splitjoin.nix
