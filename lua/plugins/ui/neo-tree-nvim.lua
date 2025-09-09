@@ -46,12 +46,24 @@ return {
 				end,
 			},
 		},
+		---@module 'neo-tree'
+		---@type neotree.Config
 		opts = {
+			window = {
+				popup = {
+					size = {
+						height = "80%",
+						width = "85%",
+					},
+				},
+			},
 			sources = {
 				"filesystem",
 				"buffers",
+				"git_status",
+				"document_symbols",
 			},
-			close_if_last_window = false,
+			close_if_last_window = true,
 			popup_border_style = "rounded",
 			enable_diagnostics = true,
 			open_files_do_not_replace_types = {
@@ -71,10 +83,12 @@ return {
 					required_width = 88, -- min width of window required to show this column
 				},
 				last_modified = {
+					format = "relative",
 					enabled = true,
 					required_width = 64, -- min width of window required to show this column
 				},
 				created = {
+					format = "relative",
 					enabled = true,
 					required_width = 88, -- min width of window required to show this column
 				},
@@ -86,6 +100,9 @@ return {
 					trailing_slash = false,
 					use_git_status_colors = true,
 					highlight = "NeoTreeFileName",
+				},
+				symlink_target = {
+					enabled = true,
 				},
 			},
 			filesystem = {
