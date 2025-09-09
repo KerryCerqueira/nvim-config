@@ -11,6 +11,7 @@
 		./mini-basics.nix
 		./neo-tree-nvim.nix
 		./neominimap-nvim.nix
+		./oil-nvim.nix
 		./snacks-nvim.nix
 		./telescope-nvim.nix
 		./tiny-glimmer-nvim.nix
