@@ -20,6 +20,9 @@ return {
 			---@type Neominimap.UserConfig
 			vim.g.neominimap = {
 				layout = "float",
+				float = {
+					window_border = "rounded",
+				},
 				auto_enable = true,
 				close_if_last_window = true,
 				exclude_filetypes = {

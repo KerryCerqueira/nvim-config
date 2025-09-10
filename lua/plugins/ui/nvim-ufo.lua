@@ -3,8 +3,44 @@ return {
 	dependencies = { "kevinhwang91/promise-async", },
 	event = "BufEnter",
 	keys = {
-		{ "zR", require("ufo").openAllFolds, desc ="Open all folds" },
-		{ "zM", require("ufo").closeAllFolds, desc ="Close all folds" },
+		{
+			"zR",
+			function()
+				require("ufo").openAllFolds()
+			end,
+			desc = "Open all folds"
+		},
+		{
+			"]z",
+			function()
+				require("ufo").goNextClosedFold()
+			end,
+			desc = "Next closed fold",
+		},
+		{
+			"[z",
+			function()
+				require("ufo").goPreviousClosedFold()
+			end,
+			desc = "Previous closed fold",
+		},
+		{
+			"zM",
+			function()
+				require("ufo").closeAllFolds()
+			end,
+			desc = "Close all folds"
+		},
+		{
+			"K",
+			function()
+				local winid = require('ufo').peekFoldedLinesUnderCursor()
+				if not winid then
+					vim.lsp.buf.hover()
+				end
+			end,
+			desc = "LSP hover/fold peek",
+		},
 	},
 	init = function()
 		vim.o.foldlevel = 99
@@ -13,25 +49,15 @@ return {
 		vim.o.updatetime = 800
 	end,
 	opts = {
-		textobjects = {
-			select = {
-				enable = true,
-				lookahead = true,
-				keymaps = {
-					["af"] = { query = "@function.outer", desc = "treesitter function", },
-					["if"] = { query = "@function.inner", desc = "treesitter function", },
-					["ac"] = { query = "@class.outer", desc = "treesitter class",},
-					["ic"] = { query = "@class.inner", desc = "treesitter class", },
-					["iS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
-					["aS"] = { query = "@local.scope", query_group = "locals", desc = "language scope" },
-					["iP"] = { query = "@parameter.inner", desc = "treesitter parameter" },
-					["aP"] = { query = "@parameter.outer", desc = "treesitter parameter" },
-				},
-				selection_modes = {
-					['@function.outer'] = 'V',
-					['@class.outer'] = 'V',
-				},
+		preview = {
+			win_config = {
+				winhighlight = 'Normal:Folded',
+				winblend = 0
 			},
+			mappings = {
+				scrollU = '<C-u>',
+				scrollD = '<C-d>',
+			}
 		},
 		provider_selector = function(bufnr, filetype, buftype)
 			return {'treesitter', 'indent'}
@@ -69,16 +95,4 @@ return {
 			return newVirtText
 		end
 	},
-	config = function(_, opts)
-		local ufo = require("ufo")
-		ufo.setup(opts)
-		vim.api.nvim_create_autocmd(
-			"CursorHold",
-			{
-				callback = function()
-					ufo.peekFoldedLinesUnderCursor()
-				end,
-			}
-		)
-	end,
 }
