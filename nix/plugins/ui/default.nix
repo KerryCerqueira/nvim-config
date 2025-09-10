@@ -6,6 +6,7 @@
 		./catppuccin-nvim.nix
 		./colorful-winsep-nvim.nix
 		./edgy-nvim.nix
+		./fzf-lua.nix
 		./image-nvim.nix
 		./lualine-nvim.nix
 		./mini-basics.nix
