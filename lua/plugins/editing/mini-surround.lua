@@ -8,20 +8,23 @@ return {
 	{
 		"echasnovski/mini.surround",
 		event = "BufEnter",
+		init = function()
+			vim.notify("init!")
+			vim.keymap.set("n", "S", "<Nop>")
+		end,
 		opts = {
 			mappings = {
-				add = "<Leader>sa",
-				delete = "<Leader>sd",
-				find = "<Leader>sf",
-				find_left = "<Leader>sF",
-				highlight = "<Leader>sh",
-				replace = "<Leader>sr",
-				update_n_lines = "<Leader>sn",
+				add = "gsa",
+				delete = "gsd",
+				find = "gsf",
+				find_left = "gsF",
+				highlight = "gsh",
+				replace = "gsr",
+				update_n_lines = "gsn",
 				suffix_last = "l",
 				suffix_next = "n",
 			},
 		},
-		version = false,
 	},
 	{
 		"folke/which-key.nvim",
@@ -30,7 +33,7 @@ return {
 		---@type wk.Opts
 		opts = {
 			spec = {
-				{ "<Leader>s", group = "surround" },
+				{ "gs", group = "surround" },
 			},
 		},
 	},
