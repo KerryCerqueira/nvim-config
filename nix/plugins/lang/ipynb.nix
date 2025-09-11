@@ -19,12 +19,12 @@
 			websocket-client
 		];
 		plugins = with pkgs.vimPlugins; [
-			image-nvim
 			img-clip-nvim
 			molten-nvim
 			nvim-lspconfig
 			otter-nvim
 			quarto-nvim
+			snacks-nvim
 		];
 	};
 	xdg.configFile."nvim/lua/plugins/lang/ipynb.lua".source =

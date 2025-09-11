@@ -9,11 +9,12 @@
 			nodePackages.prettier
 		];
 		plugins = with pkgs.vimPlugins; [
-			render-markdown-nvim
+			conform-nvim
 			img-clip-nvim
 			nvim-lint
 			nvim-lspconfig
-			conform-nvim
+			render-markdown-nvim
+			snacks-nvim
 		];
 	};
 	xdg.configFile = {

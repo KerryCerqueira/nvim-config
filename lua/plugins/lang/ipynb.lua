@@ -117,7 +117,7 @@ return {
 	},
 	{
 		"benlubas/molten-nvim",
-		dependencies = { "3rd/image.nvim" },
+		dependencies = { "folke/snacks.nvim" },
 		ft = { "python", "markdown", "quarto" },
 		keys = {
 			{
@@ -132,7 +132,7 @@ return {
 			},
 		},
 		init = function()
-			vim.g.molten_image_provider = "image.nvim"
+			vim.g.molten_image_provider = "snacks.nvim"
 			vim.g.molten_auto_image_popup = true
 			vim.g.molten_auto_open_html_in_browser = true
 			vim.g.molten_wrap_output = true
@@ -246,6 +246,14 @@ return {
 			spec = {
 				{ "<localleader>m", group = "molten" },
 			},
+		},
+	},
+	{
+		"folke/snacks.nvim",
+		optional = true,
+		---@type snacks.Config
+		opts = {
+			image = { enabled = true },
 		},
 	},
 }

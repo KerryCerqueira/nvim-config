@@ -7,14 +7,12 @@
 		./colorful-winsep-nvim.nix
 		./edgy-nvim.nix
 		./fzf-lua.nix
-		./image-nvim.nix
 		./lualine-nvim.nix
 		./mini-basics.nix
 		./neo-tree-nvim.nix
 		./neominimap-nvim.nix
 		./oil-nvim.nix
 		./snacks-nvim.nix
-		./telescope-nvim.nix
 		./tiny-glimmer-nvim.nix
 		./nvim-ufo.nix
 		./sshfs-nvim.nix

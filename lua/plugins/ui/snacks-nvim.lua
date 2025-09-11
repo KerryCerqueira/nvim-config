@@ -58,7 +58,7 @@ return {
 				desc = "Toggle Scratch Buffer",
 			},
 			{
-				"<leader>S",
+				"<leader>fs",
 				function()
 					Snacks.scratch.select()
 				end,
@@ -176,20 +176,11 @@ return {
 					Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("\\r")
 					Snacks.toggle.diagnostics():map("\\d")
 					Snacks.toggle.line_number():map("\\n")
-					Snacks.toggle
-						.option("conceallevel", {
-							off = 0,
-							on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
-						})
-						:map("\\L")
+					Snacks.toggle .option("conceallevel", {
+						off = 0,
+						on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
+					}):map("\\L")
 					Snacks.toggle.treesitter():map("\\th")
-					Snacks.toggle
-						.option("background", {
-							off = "light",
-							on = "dark",
-							name = "Dark Background",
-						})
-						:map("\\b")
 					Snacks.toggle.inlay_hints():map("\\H")
 					Snacks.toggle.indent():map("\\g")
 					Snacks.toggle.dim():map("\\D")
