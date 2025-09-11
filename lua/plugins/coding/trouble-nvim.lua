@@ -128,4 +128,18 @@ return {
 			},
 		},
 	},
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = {
+			"folke/trouble.nvim",
+		},
+		optional = true,
+		opts = {
+			actions = {
+				files = {
+					["ctrl-t"] = require("trouble.sources.fzf").actions.open
+				},
+			},
+		}
+	},
 }
