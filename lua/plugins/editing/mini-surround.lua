@@ -9,7 +9,6 @@ return {
 		"echasnovski/mini.surround",
 		event = "BufEnter",
 		init = function()
-			vim.notify("init!")
 			vim.keymap.set("n", "S", "<Nop>")
 		end,
 		opts = {
