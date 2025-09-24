@@ -11,6 +11,7 @@
 		./nvim-lint.nix
 		./nvim-treesitter.nix
 		./nvim-various-textobjs.nix
+		./obsidian-nvim.nix
 		./substitute-nvim.nix
 	];
 }

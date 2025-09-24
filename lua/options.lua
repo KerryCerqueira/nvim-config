@@ -23,6 +23,7 @@ return {
 			"hypr_ls",
 			"jsonls",
 			"lua_ls",
+			"markdown_oxide",
 			"marksman",
 			"nil_ls",
 			"pyright",
