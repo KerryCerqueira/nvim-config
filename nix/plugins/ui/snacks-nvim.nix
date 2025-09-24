@@ -1,7 +1,24 @@
 { pkgs, ... }:
-
-{
-	programs.neovim.plugins = [ pkgs.vimPlugins.snacks-nvim ];
+let
+	tex = pkgs.texlive.combine {
+		inherit (pkgs.texlive)
+		preview
+		standalone
+		varwidth
+		scheme-small;
+	};
+in {
+	programs.neovim = {
+		plugins = with pkgs.vimPlugins; [
+			snacks-nvim
+		];
+		extraPackages = with pkgs; [
+			ghostscript
+			imagemagick
+			mermaid-cli
+			tex
+		];
+	};
 	xdg.configFile = {
 		"nvim/lua/plugins/ui/snacks-nvim.lua".source =
 			../../../lua/plugins/ui/snacks-nvim.lua;
