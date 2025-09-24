@@ -2,9 +2,9 @@
 
 let
 	neominimap-nvim = let
-		tag = "v3.14.2";
+		tag = "v3.15.2";
 		version  = lib.removePrefix "v" tag;
-		hash = "sha256-XJXqduBLMtHrFSThxTmcbn3YJ+j5fIhFt1ccAVbthQs=";
+		hash = "sha256-HiP0xH4NyrX4lvmTDFbwYv0Hfl176Au9Q/ellJSPCuw=";
 	in pkgs.vimUtils.buildVimPlugin {
 			pname = "neominimap.nvim";
 			inherit version;
