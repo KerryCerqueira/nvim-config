@@ -1,6 +1,9 @@
 if false then
 	require("lazy")
+	require("snacks")
+	require("which-key")
 end
+
 local function project_root(bufnr)
 	bufnr = bufnr or 0
 	-- 1) LSP root
@@ -225,41 +228,45 @@ return {
 			},
 		},
 		opts = function()
+			fzflua = require("fzf-lua")
 			return {
 				"default-title",
-				defaults = {
-					keymap = {
-						fzf = {
-							["ctrl-q"] = "select-all+accept",
-							["ctrl-u"] = "half-page-up",
-							["ctrl-d"] = "half-page-down",
-							["ctrl-x"] = "jump",
-							["ctrl-f"] = "preview-page-down",
-							["ctrl-b"] = "preview-page-up",
-						},
-						builtin = {
-							["<c-f>"] = "preview-page-down",
-							["<c-b>"] = "preview-page-up",
-						},
+				actions = {
+					files = {
+						["enter"]       = fzflua.actions.file_edit_or_qf,
+						["ctrl-s"]      = fzflua.actions.file_split,
+						["ctrl-v"]      = fzflua.actions.file_vsplit,
+						["ctrl-t"]      = fzflua.actions.file_tabedit,
+						["alt-q"]       = fzflua.actions.file_sel_to_qf,
+						["alt-Q"]       = fzflua.actions.file_sel_to_ll,
+						["alt-i"]       = fzflua.actions.toggle_ignore,
+						["alt-h"]       = fzflua.actions.toggle_hidden,
+						["alt-f"]       = fzflua.actions.toggle_follow,
 					},
 				},
 				files = {
 					cwd_prompt = false,
-					actions = {
-						["alt-i"] = require("fzf-lua").actions.toggle_ignore,
-						["alt-h"] = require("fzf-lua").actions.toggle_hidden,
-						["alt-f"] = require("fzf-lua").actions.toggle_follow,
-					},
 					follow = true,
 				},
 				fzf_colors = true,
 				grep = {
-					actions = {
-						["alt-i"] = require("fzf-lua").actions.toggle_ignore,
-						["alt-h"] = require("fzf-lua").actions.toggle_hidden,
-						["alt-f"] = require("fzf-lua").actions.toggle_follow,
-					},
 					follow = true,
+				},
+				keymap = {
+					fzf = {
+						true,
+						["ctrl-q"] = "select-all+accept",
+						["ctrl-u"] = "half-page-up",
+						["ctrl-d"] = "half-page-down",
+						["ctrl-x"] = "jump",
+						["ctrl-f"] = "preview-page-down",
+						["ctrl-b"] = "preview-page-up",
+					},
+					builtin = {
+						true,
+						["<c-f>"] = "preview-page-down",
+						["<c-b>"] = "preview-page-up",
+					},
 				},
 				lsp = {
 					symbols = {
@@ -298,7 +305,6 @@ return {
 							title_pos = "center",
 						},
 					}
-					-- Decide layout overlay
 					local overlay
 					if fzf_opts.kind == "codeaction" then
 						overlay = {
