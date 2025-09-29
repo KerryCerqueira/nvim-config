@@ -28,7 +28,7 @@ return {
 		},
 		keys = {
 			{
-				"<Leader>aa",
+				"<Leader>ac",
 				"<cmd>CodeCompanionChat Toggle<cr>",
 				desc = "Open AI chat",
 			},
