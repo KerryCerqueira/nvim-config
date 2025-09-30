@@ -69,27 +69,6 @@ return {
 				desc = "Next Trouble/Quickfix Item",
 			},
 		},
-		init = function()
-			vim.diagnostic.config({
-				signs = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.HINT] = " ",
-						[vim.diagnostic.severity.INFO] = " ",
-					},
-				},
-				diagnostics = {
-					underline = true,
-					update_in_insert = false,
-					virtual_text = false,
-					severity_sort = true,
-				},
-				virtual_lines = {
-					current_line = true,
-				},
-			})
-		end,
 		---@type trouble.Config
 		opts = {
 			open_no_results = true,
