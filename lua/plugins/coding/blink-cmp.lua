@@ -3,6 +3,8 @@ if false then
 	require("blink.cmp")
 end
 
+local types = require("luasnip.util.types")
+
 ---@type LazySpec
 return {
 	{
@@ -273,6 +275,46 @@ return {
 			},
 		},
 		opts = {
+			ext_opts = {
+				-- Insert / placeholder nodes
+				[types.insertNode] = {
+					-- when cursor is inside this node
+					active = {
+						hl_group = "LuasnipNodeActive",
+						priority = 200,
+						hl_mode = "combine",
+					},
+					-- when node exists but isn't current
+					passive = {
+						hl_group = "LuasnipNodePassive",
+						priority = 90,
+						hl_mode = "combine",
+					},
+				},
+				-- Choice nodes (add an eol badge when focused)
+				[types.choiceNode] = {
+					active = {
+						hl_group = "LuasnipChoice",
+						priority = 210,
+						hl_mode = "combine",
+						virt_text = { { " 󰼯 choice", "LuasnipHint" } }, -- glyph optional
+						virt_text_pos = "eol",
+					},
+					passive = {
+						hl_group = "LuasnipNodePassive",
+						priority = 95,
+						hl_mode = "combine",
+					},
+				},
+				-- (Optional) whole-snippet region when *not* focused
+				[types.snippetNode] = {
+					passive = {
+						hl_group = "LuasnipNodePassive",
+						priority = 80,
+						hl_mode = "combine",
+					},
+				},
+			},
 			keep_roots   = true,
 			link_roots   = true,
 			link_children = true,
@@ -286,8 +328,30 @@ return {
 				"CursorHold",
 				"InsertEnter",
 			},
-			enable_autosnippets = false,
+			enable_autosnippets = true,
 		},
+		init = function()
+			vim.api.nvim_set_hl(
+				0,
+				"LuasnipNodePassive",
+				{ link = "Visual" }
+			)
+			vim.api.nvim_set_hl(
+				0,
+				"LuasnipNodeActive",
+				{ link = "IncSearch" }
+			)
+			vim.api.nvim_set_hl(
+				0,
+				"LuasnipChoice",
+				{ link = "Search" }
+			)
+			vim.api.nvim_set_hl(
+				0,
+				"LuasnipHint",
+				{ link = "Comment" }
+			)
+		end,
 		config = function(_, opts)
 			local ls = require("luasnip")
 			ls.setup(opts)
