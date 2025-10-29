@@ -99,8 +99,6 @@ return {
 				end,
 				desc = "Toggle Terminal",
 			},
-			-- { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-			-- { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
 			{
 				"<leader>N",
 				desc = "Neovim News",
@@ -121,9 +119,12 @@ return {
 			},
 		},
 		init = function()
-			vim.opt.tabstop = 3
-			vim.opt.shiftwidth = 3
-			vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap(
+				"t",
+				"<Esc><Esc>",
+				"<C-\\><C-n>",
+				{ noremap = true, silent = true }
+			)
 			vim.api.nvim_set_keymap(
 				"t",
 				"<C-h>",

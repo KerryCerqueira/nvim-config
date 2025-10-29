@@ -13,6 +13,8 @@
 		];
 	};
 	xdg.configFile = {
+    "nvim/ftplugin/json.lua".source =
+      ../../../ftplugin/json.lua;
 		"nvim/lua/plugins/lang/json.lua".source =
 			../../../lua/plugins/lang/json.lua;
 		"nvim/lsp/jsonls.lua".source =

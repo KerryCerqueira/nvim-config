@@ -18,6 +18,8 @@
 		];
 	};
 	xdg.configFile = {
+    "nvim/ftplugin/markdown.lua".source =
+      ../../../ftplugin/markdown.lua;
 		"nvim/lua/plugins/lang/markdown.lua".source =
 			../../../lua/plugins/lang/markdown.lua;
 		"nvim/lsp/marksman.lua".source =

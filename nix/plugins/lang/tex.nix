@@ -16,6 +16,7 @@
 		];
 	};
 	xdg.configFile = {
+    "nvim/ftplugin/tex.lua".source = ../../../ftplugin/tex.lua;
 		"nvim/lua/plugins/lang/tex.lua".source = ../../../lua/plugins/lang/tex.lua;
 		"nvim/lsp/texlab.lua".source = ../../../lsp/texlab.lua;
 	};
