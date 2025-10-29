@@ -1,10 +1,10 @@
 {
-	imports = [
-		./ai
-		./coding
-		./git
-		./editing
-		./lang
-		./ui
-	];
+  imports = [
+    ./ai
+    ./coding
+    ./git
+    ./editing
+    ./lang
+    ./ui
+  ];
 }

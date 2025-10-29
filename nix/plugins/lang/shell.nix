@@ -18,11 +18,11 @@
       ../../../ftplugin/sh.lua;
     "nvim/ftplugin/zsh.lua".source =
       ../../../ftplugin/zsh.lua;
-		"nvim/lua/plugins/lang/shell.lua".source =
-			../../../lua/plugins/lang/shell.lua;
-		"nvim/lsp/bashls.lua".source =
-			../../../lsp/bashls.lua;
-		"nvim/lsp/fish_lsp.lua".source =
-			../../../lsp/fish_lsp.lua;
+    "nvim/lua/plugins/lang/shell.lua".source =
+      ../../../lua/plugins/lang/shell.lua;
+    "nvim/lsp/bashls.lua".source =
+      ../../../lsp/bashls.lua;
+    "nvim/lsp/fish_lsp.lua".source =
+      ../../../lsp/fish_lsp.lua;
   };
 }
